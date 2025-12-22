@@ -18,6 +18,7 @@
   # Feature flags
   imageSupport ? true,
   zfsSupport ? true,
+  shellCompletions ? true,
   ...
 }:
 stdenv.mkDerivation (finalAttr: {
@@ -80,6 +81,12 @@ stdenv.mkDerivation (finalAttr: {
   postInstall = ''
     wrapProgram $out/bin/fastfetch \
     --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath finalAttr.buildInputs}"
+  '';
+
+  postFixup = ''
+    for shell in bash fish zsh; do
+      installShellCompletion --$shell $src/completions/fastfetch.$shell
+    done
   '';
 
   nativeInstallCheckInputs = [ versionCheckHook ];
