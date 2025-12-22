@@ -19,7 +19,7 @@
       forEachSystem = nixpkgs.lib.genAttrs defaultSystems;
     in
     {
-      packages = forEachSystem (
+      legacyPackages = forEachSystem (
         system:
         let
           lib = nixpkgs.lib;
