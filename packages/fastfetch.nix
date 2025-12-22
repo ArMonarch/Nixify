@@ -16,19 +16,19 @@
   versionCheckHook,
 
   # Feature flags
+  flashfetchSupport ? false,
   imageSupport ? true,
   zfsSupport ? true,
-  shellCompletions ? true,
   ...
 }:
-stdenv.mkDerivation (finalAttr: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "fastfetch";
   version = "2.56.1";
 
   src = fetchFromGitHub {
     owner = "fastfetch-cli";
     repo = "fastfetch";
-    tag = finalAttr.version;
+    tag = finalAttrs.version;
     hash = "sha256-loTEadHPhE0b7VYCq2Lh+FKKnqzc4kzWFkHLnTjFsBg=";
   };
 
@@ -67,12 +67,13 @@ stdenv.mkDerivation (finalAttr: {
     (lib.cmakeBool "ENABLE_SYSTEM_YYJSON" true)
 
     # Feature flags
+    (lib.cmakeBool "BUILD_FLASHFETCH" flashfetchSupport)
+
     (lib.cmakeBool "ENABLE_LIBZFS" zfsSupport)
     (lib.cmakeBool "ENABLE_IMAGEMAGICK6" false)
     (lib.cmakeBool "ENABLE_IMAGEMAGICK7" imageSupport)
     (lib.cmakeBool "ENABLE_CHAFA" imageSupport)
-  ]
-  ++ lib.optionals stdenv.hostPlatform.isLinux [ ];
+  ];
 
   postPatch = ''
     substituteInPlace completions/fastfetch.{bash,fish,zsh} --replace-fail python3 '${python3.interpreter}'
@@ -80,7 +81,19 @@ stdenv.mkDerivation (finalAttr: {
 
   postInstall = ''
     wrapProgram $out/bin/fastfetch \
-    --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath finalAttr.buildInputs}"
+    --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath finalAttrs.buildInputs}"
+  ''
+  + lib.optionalString flashfetchSupport ''
+    wrapProgram $out/bin/flashfetch \
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath finalAttrs.buildInputs}"
+  '';
+
+  postFixup = ''
+    # remove default fish completions and add new fish completions
+    # as default fish completions doesn't seem to work
+    rm -r $out/share/fish
+    mkdir -p $out/share/fish/completions
+    ln -vsf $src/completions/fastfetch.fish $out/share/fish/completions/fastfetch.fish
   '';
 
   nativeInstallCheckInputs = [ versionCheckHook ];
@@ -90,6 +103,6 @@ stdenv.mkDerivation (finalAttr: {
   meta = {
     description = "An actively maintained, feature-rich and performance oriented, neofetch like system information tool";
     homepage = "https://github.com/fastfetch-cli/fastfetch";
-    changelog = "https://github.com/fastfetch-cli/fastfetch/releases/tag/${finalAttr.version}";
+    changelog = "https://github.com/fastfetch-cli/fastfetch/releases/tag/${finalAttrs.version}";
   };
 })

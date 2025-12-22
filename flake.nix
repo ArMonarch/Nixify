@@ -15,8 +15,7 @@
   outputs =
     { nixpkgs, systems, ... }:
     let
-      defaultSystems = import systems;
-      forEachSystem = nixpkgs.lib.genAttrs defaultSystems;
+      forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
     {
       legacyPackages = forEachSystem (
