@@ -1,0 +1,6 @@
+# nix build result
+result
+result-man
+
+# nix unpack sources
+source/
