@@ -83,12 +83,6 @@ stdenv.mkDerivation (finalAttr: {
     --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath finalAttr.buildInputs}"
   '';
 
-  postFixup = ''
-    for shell in bash fish zsh; do
-      installShellCompletion $src/completions/fastfetch.$shell
-    done
-  '';
-
   nativeInstallCheckInputs = [ versionCheckHook ];
   versionCheckProgramArg = "--version";
   doInstallCheck = true;
