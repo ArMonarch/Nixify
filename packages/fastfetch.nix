@@ -85,7 +85,7 @@ stdenv.mkDerivation (finalAttr: {
 
   postFixup = ''
     for shell in bash fish zsh; do
-      installShellCompletion --$shell $src/completions/fastfetch.$shell
+      installShellCompletion $src/completions/fastfetch.$shell
     done
   '';
 
