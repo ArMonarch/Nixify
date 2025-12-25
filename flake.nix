@@ -29,5 +29,9 @@
           inherit pkgs;
         }
       );
+      nixosModules = {
+        default = import ./nixosModules/default.nix;
+        nixify = import ./nixosModules/default.nix;
+      };
     };
 }
