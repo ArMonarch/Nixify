@@ -3,7 +3,7 @@
 
   inputs = {
     systems.url = "github:nix-systems/default-linux";
-    # NixOS official package source, using the nixos-unstable branch
+    # NixOS official package source, using the nixos-25.05 branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # wrappers: Nix library to create wrapped executables source
     wrappers = {
@@ -13,7 +13,11 @@
   };
 
   outputs =
-    { nixpkgs, systems, ... }:
+    {
+      nixpkgs,
+      systems,
+      ...
+    }:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in

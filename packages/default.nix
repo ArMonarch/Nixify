@@ -1,4 +1,8 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 let
   cmake = pkgs.cmake;
   chafa = pkgs.chafa;

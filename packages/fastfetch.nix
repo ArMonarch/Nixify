@@ -17,19 +17,19 @@
 
   # Feature flags
   flashfetchSupport ? false,
-  imageSupport ? true,
-  zfsSupport ? true,
+  imageSupport ? false,
+  zfsSupport ? false,
   ...
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "fastfetch";
-  version = "2.56.1";
+  version = "2.43.0";
 
   src = fetchFromGitHub {
     owner = "fastfetch-cli";
     repo = "fastfetch";
     tag = finalAttrs.version;
-    hash = "sha256-loTEadHPhE0b7VYCq2Lh+FKKnqzc4kzWFkHLnTjFsBg=";
+    hash = "sha256-gUqNiiPipoxLKwGVsi42PyOnmPbfvUs7UwfqOdmFn/E=";
   };
 
   outputs = [
