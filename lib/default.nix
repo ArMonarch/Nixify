@@ -7,7 +7,7 @@ let
     lines
     path
     ;
-  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.options) mkEnableOption mkOption mkDefault;
 in
 {
   fileTypeRelativeTo =
@@ -30,6 +30,7 @@ in
           relativeTo = mkOption {
             internal = true;
             type = path;
+            readOnly = true;
             default = rootDir;
             description = "Path that symlinks are relative to.";
           };
@@ -44,7 +45,7 @@ in
         };
 
         config = lib.mkMerge [
-          { target = name; }
+          { target = mkDefault name; }
         ];
       }
     );
