@@ -12,13 +12,19 @@ let
   inherit (lib.types) submoduleWith;
 
   cfg = config.nixify;
+  nixify-lib = import ../../lib/default.nix { inherit pkgs lib; };
   _class = "nixos";
 
   nixifySubmodule = submoduleWith {
     description = "Nixify Module for NixOS";
     class = "nixify";
     specialArgs = cfg.specialArgs // {
-      inherit pkgs lib utils;
+      inherit
+        pkgs
+        lib
+        nixify-lib
+        utils
+        ;
       osConfig = config;
       osOptions = options;
     };

@@ -1,5 +1,10 @@
 # The common module that contains Nixify's per-user options.
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  nixify-lib,
+  ...
+}:
 let
   inherit (lib.options) literalExpression mkEnableOption mkOption;
   inherit (lib.types)
@@ -9,6 +14,11 @@ let
     package
     listOf
     ;
+  inherit (nixify-lib) fileTypeRelativeTo;
+  fileTypeRelativeTo' = lib.types.attrsWith {
+    elemType = fileTypeRelativeTo;
+    placeholder = "path";
+  };
 
   cfg = config;
 in
@@ -33,6 +43,15 @@ in
         The home directory for the user, to which files configured in
         {option}`hjem.users.<username>.files` will be relative to by default.
       '';
+    };
+
+    files = mkOption {
+      type = fileTypeRelativeTo';
+      default = { };
+      description = "Nixify managed files";
+      example = {
+        ".config/foo.txt".source = "Hello World";
+      };
     };
 
     packages = mkOption {
