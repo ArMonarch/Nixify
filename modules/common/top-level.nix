@@ -10,7 +10,7 @@ let
   inherit (lib.options) literalExpression mkOption;
   inherit (lib.types)
     attrs
-    attrsOf
+    attrsWith
     listOf
     raw
     ;
@@ -23,7 +23,10 @@ in
 
   options.nixify = {
     users = mkOption {
-      type = attrsOf nixifySubmodule;
+      type = attrsWith {
+        elemType = nixifySubmodule;
+        placeholder = "username";
+      };
       default = { };
       description = "Nixify managed user configurations.";
     };

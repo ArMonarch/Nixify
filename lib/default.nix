@@ -10,7 +10,7 @@ let
 in
 {
   fileTypeRelativeTo =
-    { rootDir }:
+    { name }:
     submodule ({
       enable = mkEnableOption "creation of this file" // {
         default = true;
@@ -25,9 +25,9 @@ in
 
       target = mkOption {
         type = str;
-        default = rootDir;
+        default = name;
         description = ''
-          Path to target file relative to `${rootDir}`.
+          Path to target file relative to `${name}`.
         '';
       };
 
