@@ -8,6 +8,7 @@
 let
   inherit (lib.options) literalExpression mkEnableOption mkOption;
   inherit (lib.types)
+    attrsWith
     strMatching
     passwdEntry
     path
@@ -15,10 +16,12 @@ let
     listOf
     ;
   inherit (nixify-lib) fileTypeRelativeTo;
-  fileTypeRelativeTo' = lib.types.attrsWith {
-    elemType = fileTypeRelativeTo;
-    placeholder = "path";
-  };
+  fileTypeRelativeTo' =
+    rootDir:
+    attrsWith {
+      elemType = fileTypeRelativeTo { inherit rootDir; };
+      placeholder = "path";
+    };
 
   cfg = config;
 in
@@ -45,14 +48,14 @@ in
       '';
     };
 
-    # files = mkOption {
-    #   type = fileTypeRelativeTo';
-    #   default = "";
-    #   description = "Nixify managed files";
-    #   example = {
-    #     ".config/foo.txt".source = "Hello World";
-    #   };
-    # };
+    files = mkOption {
+      type = fileTypeRelativeTo' cfg.directory;
+      default = "";
+      description = "Nixify managed files";
+      example = {
+        ".config/foo.txt".source = "Hello World";
+      };
+    };
 
     packages = mkOption {
       type = listOf package;

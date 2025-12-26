@@ -5,32 +5,44 @@ let
     submodule
     nullOr
     lines
+    path
     ;
   inherit (lib.options) mkEnableOption mkOption;
 in
 {
   fileTypeRelativeTo =
-    { name }:
-    submodule ({
-      enable = mkEnableOption "creation of this file" // {
-        default = true;
-        example = false;
-      };
+    { rootDir }:
+    submodule (
+      { name, config, ... }:
+      {
+        enable = mkEnableOption "creation of this file" // {
+          default = true;
+          example = false;
+        };
 
-      text = mkOption {
-        type = nullOr lines;
-        default = null;
-        description = "Text of the file.";
-      };
+        text = mkOption {
+          type = nullOr lines;
+          default = null;
+          description = "Text of the file.";
+        };
 
-      target = mkOption {
-        type = str;
-        default = name;
-        description = ''
-          Path to target file relative to `${name}`.
-        '';
-      };
+        relativeTo = mkOption {
+          internal = true;
+          type = path;
+          default = rootDir;
+          description = "Path that symlinks are relative to.";
+        };
 
-      config = lib.mkMerge [ ];
-    });
+        target = mkOption {
+          type = str;
+          apply = p: "${config.relativeTo}/${p}";
+          description = ''
+            Path to target file relative to `${rootDir}`.
+          '';
+        };
+
+        config = lib.mkMerge [
+        ];
+      }
+    );
 }
