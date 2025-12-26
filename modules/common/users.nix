@@ -50,7 +50,7 @@ in
 
     files = mkOption {
       type = fileTypeRelativeTo' cfg.directory;
-      default = "";
+      default = { };
       description = "Nixify managed files";
       example = {
         ".config/foo.txt".source = "Hello World";
