@@ -45,14 +45,14 @@ in
       '';
     };
 
-    files = mkOption {
-      type = fileTypeRelativeTo';
-      default = "";
-      description = "Nixify managed files";
-      example = {
-        ".config/foo.txt".source = "Hello World";
-      };
-    };
+    # files = mkOption {
+    #   type = fileTypeRelativeTo';
+    #   default = "";
+    #   description = "Nixify managed files";
+    #   example = {
+    #     ".config/foo.txt".source = "Hello World";
+    #   };
+    # };
 
     packages = mkOption {
       type = listOf package;
