@@ -2,9 +2,9 @@
   description = "ArMonarch's Nix Packages";
 
   inputs = {
-    # NixOS official package source, using the nixos-unstable branch
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
+    # NixOS official package source, using the nixos-unstable branch
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     # wrappers: Nix library to create wrapped executables source
     wrappers = {
       url = "github:lassulus/wrappers";
@@ -29,9 +29,9 @@
           inherit pkgs;
         }
       );
-      nixosModules = {
-        default = import ./nixosModules/default.nix;
-        nixify = import ./nixosModules/default.nix;
+      nixosModules = rec {
+        nixify = import ./modules/nixos/default.nix;
+        default = nixify;
       };
     };
 }
