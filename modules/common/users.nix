@@ -31,11 +31,11 @@ in
       example = false;
     };
 
-    # user = mkOption {
-    #   type = strMatching "[a-zA-Z0-9_.][a-zA-Z0-9_.-]*";
-    #   example = "frenzfries";
-    #   description = "The owner of a given home directory.";
-    # };
+    user = mkOption {
+      type = strMatching "[a-zA-Z0-9_.][a-zA-Z0-9_.-]*";
+      example = "frenzfries";
+      description = "The owner of a given home directory.";
+    };
 
     directory = mkOption {
       type = passwdEntry path;
@@ -45,14 +45,14 @@ in
       '';
     };
 
-    # files = mkOption {
-    #   type = fileTypeRelativeTo';
-    #   default = "";
-    #   description = "Nixify managed files";
-    #   example = {
-    #     ".config/foo.txt".source = "Hello World";
-    #   };
-    # };
+    files = mkOption {
+      type = fileTypeRelativeTo';
+      default = "";
+      description = "Nixify managed files";
+      example = {
+        ".config/foo.txt".source = "Hello World";
+      };
+    };
 
     packages = mkOption {
       type = listOf package;
