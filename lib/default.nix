@@ -15,30 +15,32 @@ in
     submodule (
       { name, config, ... }:
       {
-        enable = mkEnableOption "creation of this file" // {
-          default = true;
-          example = false;
-        };
+        options = {
+          enable = mkEnableOption "creation of this file" // {
+            default = true;
+            example = false;
+          };
 
-        text = mkOption {
-          type = nullOr lines;
-          default = null;
-          description = "Text of the file.";
-        };
+          text = mkOption {
+            type = nullOr lines;
+            default = null;
+            description = "Text of the file.";
+          };
 
-        relativeTo = mkOption {
-          internal = true;
-          type = path;
-          default = rootDir;
-          description = "Path that symlinks are relative to.";
-        };
+          relativeTo = mkOption {
+            internal = true;
+            type = path;
+            default = rootDir;
+            description = "Path that symlinks are relative to.";
+          };
 
-        target = mkOption {
-          type = str;
-          apply = p: "${config.relativeTo}/${p}";
-          description = ''
-            Path to target file relative to `${rootDir}`.
-          '';
+          target = mkOption {
+            type = str;
+            apply = p: "${config.relativeTo}/${p}";
+            description = ''
+              Path to target file relative to `${rootDir}`.
+            '';
+          };
         };
 
         config = lib.mkMerge [
