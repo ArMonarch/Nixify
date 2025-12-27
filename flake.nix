@@ -33,9 +33,5 @@
           inherit pkgs;
         }
       );
-      nixosModules = rec {
-        nixify = import ./modules/nixos/default.nix;
-        default = nixify;
-      };
     };
 }
