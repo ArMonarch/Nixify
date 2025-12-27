@@ -7,7 +7,8 @@ let
     lines
     path
     ;
-  inherit (lib.options) mkEnableOption mkOption mkDefault;
+  inherit (lib.options) mkEnableOption mkOption;
+  inherit (lib.modules) mkDefault mkDerivedConfig;
 in
 {
   fileTypeRelativeTo =
@@ -37,7 +38,7 @@ in
 
           target = mkOption {
             type = str;
-            apply = p: "${config.relativeTo}/${p}";
+            apply = p: "${config.relativeTo}/${p}.txt";
             description = ''
               Path to target file relative to `${rootDir}`.
             '';
@@ -45,7 +46,9 @@ in
         };
 
         config = lib.mkMerge [
-          { target = mkDefault name; }
+          {
+            target = mkDefault name;
+          }
         ];
       }
     );
