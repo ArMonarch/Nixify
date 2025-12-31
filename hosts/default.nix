@@ -45,6 +45,7 @@ in {
       inherit inputs;
       modules = mkModulesFor "lunar" {
         aspects = [
+          "boot/kernel/zen"
           "boot-loader/grub"
           "cpu/intel"
           "desktopManager/plasma"
