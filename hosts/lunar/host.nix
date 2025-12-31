@@ -14,6 +14,14 @@
       ./boot-loader.nix
     ];
 
+  system.modules.programs.eza = {
+    icons = "auto";
+    extraConfig = [
+      "--header"
+      "--group-directories-first"
+    ];
+  };
+
   hardware.nvidia = {
     prime.intelBusId = "PCI:0:2:0";
     prime.nvidiaBusId = "PCI:1:0:0";

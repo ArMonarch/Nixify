@@ -54,6 +54,7 @@ in {
           "nix/flake"
           "nixpkgs"
           "programs/common"
+          "programs/eza"
           "programs/fish"
           "programs/firefox"
           "security"

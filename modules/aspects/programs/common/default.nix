@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   environment.corePackages = with pkgs; [
     curl
-    eza
     findutils
     git
     htop
