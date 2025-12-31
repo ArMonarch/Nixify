@@ -22,7 +22,6 @@ in {
       modules =
         [
           {
-            networking.hostName = "${username}_${hostname}";
             nixpkgs.hostPlatform = mkDefault system;
           }
         ]

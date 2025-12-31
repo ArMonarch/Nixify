@@ -14,5 +14,13 @@
       ./boot-loader.nix
     ];
 
+  hardware.nvidia = {
+    prime.intelBusId = "PCI:0:2:0";
+    prime.nvidiaBusId = "PCI:1:0:0";
+  };
+
+  hardware.enableRedistributableFirmware = true;
+
+  time.timeZone = "Asia/Kathmandu";
   system.stateVersion = "25.05";
 }

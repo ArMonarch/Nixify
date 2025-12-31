@@ -20,11 +20,13 @@
     extraModules ? [],
   }:
     concatLists [
-      (singleton ./${host}/host.nix)
-      (builtins.map (aspect: aspectPaths + /${aspect}) aspects)
-      extraModules
       (singleton options)
       (singleton coreModules)
+
+      (builtins.map (aspect: aspectPaths + /${aspect}) aspects)
+      (singleton ./${host}/host.nix)
+
+      extraModules
     ];
 in {
   flake.nixosConfigurations = {
@@ -42,7 +44,24 @@ in {
       system = "x86_64-linux";
       inherit inputs;
       modules = mkModulesFor "lunar" {
-        aspects = ["boot-loader/grub"];
+        aspects = [
+          "boot-loader/grub"
+          "cpu/intel"
+          "desktopManager/plasma"
+          "displayManager/sddm"
+          "gpu/intel-nvidia"
+          "localization"
+          "nix/flake"
+          "nixpkgs"
+          "programs/common"
+          "programs/fish"
+          "programs/firefox"
+          "security"
+          "services/audio/pipewire"
+          "services/bluetooth"
+          "services/printing"
+          "system/network"
+        ];
       };
     };
   };
