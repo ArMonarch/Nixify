@@ -12,7 +12,6 @@
   modulePath = ../modules;
 
   aspectPaths = modulePath + /aspects; # the module that define an aspect of the confuguration
-  coreModules = modulePath + /core; # the modules that configures based on the options
   options = modulePath + /options; # the module that provides the options for my system configuration
 
   mkModulesFor = host: {
@@ -21,7 +20,6 @@
   }:
     concatLists [
       (singleton options)
-      (singleton coreModules)
 
       (builtins.map (aspect: aspectPaths + /${aspect}) aspects)
       (singleton ./${host}/host.nix)

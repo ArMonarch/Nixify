@@ -3,7 +3,7 @@
   description = "My vastly overengineered monorepo for everything NixOS";
 
   inputs = {
-    # NixOS official source, using the nixos-25.05 branch
+    # NixOS official source, using the nixos-25.11 branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     # NixOS official source, using the nixos-unstable branch
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
