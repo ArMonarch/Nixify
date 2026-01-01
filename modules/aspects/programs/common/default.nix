@@ -2,7 +2,6 @@
   environment.corePackages = with pkgs; [
     curl
     findutils
-    git
     htop
     ripgrep
     tldr

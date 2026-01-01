@@ -1,5 +1,5 @@
 {
   imports = [
-    ./programs/eza
+    ./shell/fish.nix
   ];
 }

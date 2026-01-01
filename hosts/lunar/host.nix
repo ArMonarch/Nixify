@@ -14,13 +14,7 @@
       ./boot-loader.nix
     ];
 
-  system.modules.programs.eza = {
-    icons = "auto";
-    extraConfig = [
-      "--header"
-      "--group-directories-first"
-    ];
-  };
+  system.modules.shell.fish.features.integrations = ["eza" "git"];
 
   hardware.nvidia = {
     prime.intelBusId = "PCI:0:2:0";

@@ -53,13 +53,12 @@ in {
           "nix/flake"
           "nixpkgs"
           "programs/common"
-          "programs/eza"
-          "programs/fish"
           "programs/firefox"
           "security"
           "services/audio/pipewire"
           "services/bluetooth"
           "services/printing"
+          "shell/fish"
           "system/network"
         ];
       };
