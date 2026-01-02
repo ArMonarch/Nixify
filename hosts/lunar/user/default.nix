@@ -1,4 +1,5 @@
 {
+  self',
   config,
   username,
   pkgs,
@@ -14,15 +15,17 @@
     home = "/home/${username}";
     shell = pkgs.fish;
 
-    packages = with pkgs; [
-      ghostty
-      fastfetch
-      wl-clipboard
-      lazygit
-      nyaa
-      qbittorrent
-      vlc
-    ];
+    packages = with pkgs;
+      [
+        ghostty
+        fastfetch
+        wl-clipboard
+        lazygit
+        nyaa
+        qbittorrent
+        vlc
+      ]
+      ++ [self'.packages.nixvim];
   };
 
   # hjem user home management setup
