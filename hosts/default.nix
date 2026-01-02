@@ -43,6 +43,7 @@ in {
         aspects = [
           "boot/kernel/zen"
           "boot-loader/grub"
+          "boot-loader/efi-support"
           "cpu/intel"
           "desktopManager/plasma"
           "displayManager/sddm"

@@ -11,7 +11,6 @@
   ];
 
   boot.loader.timeout = 10;
-  boot.loader.grub.devices = ["nodev"];
 
   system.modules.shell.fish.features.integrations = ["eza" "git"];
 
