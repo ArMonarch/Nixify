@@ -7,7 +7,6 @@
     enable = true;
     useOSProber = true;
     efiSupport = true;
-    devices = ["nodev"];
   };
 
   # disable systemd-boot
