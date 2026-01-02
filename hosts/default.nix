@@ -79,6 +79,28 @@ in {
       };
     };
 
+    seiren = mkNixosSystem {
+      hostname = "seiren";
+      username = "frenzfries";
+      system = "x86_64-linux";
+      modules = mkModulesFor "seiren" {
+        aspects = [
+          "boot/kernel/zen"
+          "boot-loader/grub"
+          "boot-loader/efi-support"
+          "cpu/intel"
+          "localization"
+          "nix/settings"
+          "nixpkgs"
+          "shell/fish"
+          "system/network"
+        ];
+        extraModules = [
+          inputs.hjem.nixosModules.default
+        ];
+      };
+    };
+
     apollo = mkNixosSystem {
       hostname = "apollo";
       username = "frenzfries";
