@@ -41,7 +41,7 @@ in {
 
     # ghostty config
     "ghostty/config" = {
-      generator = keyValue;
+      generator = keyValue.generate "config";
       value = {
         # Window Padding
         window-padding-x = 0;
