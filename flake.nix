@@ -17,6 +17,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    wrappers = {
+      url = "github:lassulus/wrappers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager alternative
     hjem = {
       url = "github:feel-co/hjem";
