@@ -1,5 +1,14 @@
-{lib, ...}: let
-  inherit (lib.generators) toGitINI toKeyValue;
+{
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib.generators) toGitINI;
+  keyValueSettings = {
+    listsAsDuplicateKeys = true;
+    mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
+  };
+  keyValue = pkgs.formats.keyValue keyValueSettings;
   gitUsername = "ArMonarch";
   gitEmail = "praffulthapa12@gmail.com";
 in {
@@ -32,7 +41,7 @@ in {
 
     # ghostty config
     "ghostty/config" = {
-      generator = toKeyValue {listsAsDuplicateKeys = true;};
+      generator = keyValue;
       value = {
         # Window Padding
         window-padding-x = 0;
