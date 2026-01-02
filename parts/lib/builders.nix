@@ -1,4 +1,11 @@
-{lib, ...}: let
+{
+  lib,
+  inputs,
+  withSystem,
+  ...
+}: let
+  # inherit self form inputs
+  inherit (inputs) self;
   inherit (lib) mkDefault;
 
   # shorthand alias to `lib.nixosSystem`
@@ -9,22 +16,23 @@ in {
   mkNixosSystem = {
     hostname,
     username,
-    inputs,
     modules,
     system,
     ...
-  } @ args:
-    mkSystem {
-      inherit system;
-      specialArgs = {
-        inherit hostname username inputs;
-      };
-      modules =
-        [
-          {
-            nixpkgs.hostPlatform = mkDefault system;
-          }
-        ]
-        ++ modules;
-    };
+  }:
+    withSystem system ({
+      inputs',
+      self',
+      ...
+    }:
+      mkSystem {
+        inherit system;
+        specialArgs = {
+          inherit hostname username;
+          inherit inputs self inputs' self';
+        };
+        modules =
+          [{nixpkgs.hostPlatform = mkDefault system;}]
+          ++ modules;
+      });
 }
