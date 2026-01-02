@@ -87,11 +87,17 @@ in {
         aspects = [
           "boot/kernel/zen"
           "boot-loader/grub"
+          # {
+          #   path = "displayManager/greetd";
+          #   features = {};
+          # }
           "localization"
           "nix/settings"
           "system/network"
           "security"
+          "services/audio/pipewire"
           "services/openssh"
+          "waylandCompositors/niri"
         ];
       };
     };
