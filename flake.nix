@@ -32,7 +32,6 @@
       imports = [
         ./parts # Parts of the flake that are used to construct the final flake.
         ./hosts # entry point for nixos configurations for each defined hosts
-        ./nixosModules # defines the nixosModules that are used to configure nixos
       ];
     };
 }
