@@ -90,6 +90,8 @@ in {
           "localization"
           "nix/settings"
           "system/network"
+          "security"
+          "services/openssh"
         ];
       };
     };
