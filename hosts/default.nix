@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (lib) concatLists singleton;
+  inherit (lib.modules) importApply;
   inherit (nixify-lib) mkNixosSystem;
 
   # Specify root path for the modules. The concept is similar to modulesPath
@@ -17,11 +18,22 @@
   mkModulesFor = host: {
     aspects ? [],
     extraModules ? [],
-  }:
+  }: let
+    normalize = aspect:
+      if builtins.isString aspect
+      then aspectPaths + /${aspect}
+      else if builtins.isAttrs aspect
+      then let
+        path = aspect.path or (throw "aspect attrs must define `path`");
+        features = aspect.features or (throw "aspect attrs must define `features`");
+      in
+        importApply (aspectPaths + /${path}) features
+      else throw "type of aspect must be string or an attrs";
+  in
     concatLists [
       (singleton options)
 
-      (builtins.map (aspect: aspectPaths + /${aspect}) aspects)
+      (builtins.map normalize aspects)
       (singleton ./${host}/host.nix)
 
       extraModules
