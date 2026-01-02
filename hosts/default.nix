@@ -48,7 +48,7 @@ in {
           "displayManager/sddm"
           "gpu/intel-nvidia"
           "localization"
-          "nix/flake"
+          "nix/settings"
           "nixpkgs"
           "programs/common"
           "programs/firefox"
@@ -58,9 +58,25 @@ in {
           "services/printing"
           "shell/fish"
           "system/network"
+          "virtualization/libvirt_qemu"
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
+        ];
+      };
+    };
+
+    apollo = mkNixosSystem {
+      hostname = "apollo";
+      username = "frenzfries";
+      system = "x86_64-linux";
+      modules = mkModulesFor "apollo" {
+        aspects = [
+          "boot/kernel/zen"
+          "boot-loader/grub"
+          "localization"
+          "nix/settings"
+          "system/network"
         ];
       };
     };
