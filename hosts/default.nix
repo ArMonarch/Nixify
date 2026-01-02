@@ -32,7 +32,6 @@ in {
       hostname = "base";
       username = "frenzfries";
       system = "x86_64-linux";
-      inherit inputs;
       modules = mkModulesFor "base" {};
     };
 
@@ -40,7 +39,6 @@ in {
       hostname = "lunar";
       username = "frenzfries";
       system = "x86_64-linux";
-      inherit inputs;
       modules = mkModulesFor "lunar" {
         aspects = [
           "boot/kernel/zen"
@@ -60,6 +58,9 @@ in {
           "services/printing"
           "shell/fish"
           "system/network"
+        ];
+        extraModules = [
+          inputs.hjem.nixosModules.default
         ];
       };
     };

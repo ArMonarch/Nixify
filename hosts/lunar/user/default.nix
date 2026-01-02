@@ -1,8 +1,10 @@
 {
+  config,
   username,
   pkgs,
   ...
 }: {
+  # user setup
   users.mutableUsers = true;
   users.users.${username} = {
     name = username;
@@ -20,6 +22,16 @@
       nyaa
       qbittorrent
       vlc
+    ];
+  };
+
+  # hjem user home management setup
+  hjem.users.${username} = {
+    enable = true;
+    clobberFiles = true;
+    directory = config.users.users.${username}.home;
+    imports = [
+      ./config_files.nix
     ];
   };
 }
