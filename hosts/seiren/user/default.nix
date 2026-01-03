@@ -5,6 +5,11 @@
   pkgs,
   ...
 }: {
+  programs = {
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [libxcrypt-legacy];
+  };
+
   # user setup
   users.mutableUsers = true;
   users.users.${username} = {

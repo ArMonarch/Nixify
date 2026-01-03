@@ -88,6 +88,10 @@ in {
           "boot-loader/grub"
           "boot-loader/efi-support"
           "cpu/intel"
+          {
+            path = "displayManager/greetd";
+            features = {niri = true;};
+          }
           "localization"
           "nix/settings"
           "nixpkgs"
