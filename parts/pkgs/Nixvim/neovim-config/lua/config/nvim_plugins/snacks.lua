@@ -17,7 +17,7 @@ return {
 		explorer = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
-		image = { enabled = true },
+		image = { enabled = false },
 		picker = {
 			enabled = true,
 			layout = { preset = "telescope" },
