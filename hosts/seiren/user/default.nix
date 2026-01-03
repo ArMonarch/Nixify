@@ -15,7 +15,11 @@
     home = "/home/${username}";
     shell = pkgs.fish;
 
-    packages = [self'.packages.nixvim];
+    packages = [
+      self'.packages.nixvim
+      pkgs.fastfetch
+      pkgs.htop
+    ];
   };
 
   # hjem user home management setup
