@@ -71,7 +71,6 @@ in {
           "services/printing"
           "shell/fish"
           "system/network"
-          "virtualization/libvirt_qemu"
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
@@ -93,6 +92,7 @@ in {
           "nix/settings"
           "nixpkgs"
           "programs/firefox"
+          "services/audio/pipewire"
           "services/bluetooth"
           "services/dbus"
           "services/power"

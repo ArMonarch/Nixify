@@ -19,6 +19,7 @@
       self'.packages.nixvim
       pkgs.fastfetch
       pkgs.htop
+      pkgs.kdePackages.dolphin
     ];
   };
 
@@ -28,7 +29,11 @@
     clobberFiles = true;
     directory = config.users.users.${username}.home;
     imports = [
-      ./config_files.nix
+      ./ghostty.nix
+      ./git.nix
     ];
+    xdg.config.files."niri/config.kdl" = {
+      source = ./niri_config.kdl;
+    };
   };
 }
