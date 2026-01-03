@@ -18,12 +18,16 @@ in {
     system,
     ...
   }:
-    withSystem system ({self', ...}:
+    withSystem system ({
+      self',
+      inputs',
+      ...
+    }:
       mkSystem {
         inherit system;
         specialArgs = {
           inherit hostname username;
-          inherit inputs self';
+          inherit inputs self' inputs';
         };
         modules =
           [{nixpkgs.hostPlatform = mkDefault system;}]
