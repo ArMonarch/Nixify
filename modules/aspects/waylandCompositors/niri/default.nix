@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.niri = {
     enable = true;
-    useNautilus = false;
   };
 
   environment.corePackages = with pkgs; [
@@ -9,5 +8,11 @@
     fuzzel
     xkeyboard-config
     wl-clipboard
+    playerctl
+    brightnessctl
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
 }
