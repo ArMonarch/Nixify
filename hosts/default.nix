@@ -98,6 +98,7 @@ in {
           "nix/settings"
           "nixpkgs"
           "programs/firefox"
+          "quickshell/noctalia-shell"
           "services/audio/pipewire"
           "services/bluetooth"
           "services/dbus"
