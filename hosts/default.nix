@@ -74,6 +74,7 @@ in {
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
+          inputs.stylix.nixosModules.default
         ];
       };
     };
@@ -88,6 +89,7 @@ in {
           "boot-loader/grub"
           "boot-loader/efi-support"
           "cpu/intel"
+          "console/fonts"
           {
             path = "displayManager/greetd";
             features = {niri = true;};
@@ -107,6 +109,7 @@ in {
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
+          inputs.stylix.nixosModules.default
         ];
       };
     };

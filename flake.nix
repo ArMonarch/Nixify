@@ -17,19 +17,21 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    # for wrapping programs with their configuration
     wrappers = {
       url = "github:lassulus/wrappers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # home-manager alternative
     hjem = {
       url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # styling framework
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
