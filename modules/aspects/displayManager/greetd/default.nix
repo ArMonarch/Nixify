@@ -8,7 +8,8 @@
     else if hyprland == true
     then "hyprland"
     else "";
-  theme = "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red;'";
+  extra_config = "--remember --asterisks --container-padding 2";
+  theme = "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'";
   time_format = "--time --time-format '%I:%M %p | %a • %h | %F'";
 in {
   services.greetd = {
@@ -18,7 +19,7 @@ in {
         vt = 1;
       };
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --remember --asterisks --container-padding 2 ${time_format} --cmd ${compositor_startcmd}";
+        command = "${pkgs.tuigreet}/bin/tuigreet ${extra_config} ${time_format} --cmd ${compositor_startcmd} ${theme}";
         user = "greeter";
       };
     };
