@@ -41,7 +41,6 @@ in {
         # Configure the font family for ghostty
         font-family = "JetBrainsMono Nerd Font";
         font-size = 12;
-        adjust-cell-height = "1.20%";
 
         # window transparency customization
         background-opacity = 0.94;
