@@ -20,7 +20,7 @@ input {
     natural-scroll
   }
 
-  mouse { }
+  mouse {}
 
   trackpoint {
     off
@@ -59,6 +59,14 @@ output "eDP-1" {
   hot-corners {
     top-left
   }
+}
+
+cursor {
+  // light mode cursor
+  // xcursor-theme "BreezeX-RosePineDawn-Linux"
+  // dark mode cursor
+  xcursor-theme "BreezeX-RosePine-Linux"
+  xcursor-size 32
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -118,8 +126,8 @@ layout {
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 hotkey-overlay {
-  // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-  // skip-at-startup
+  // disable the "Important Hotkeys" pop-up at startup.
+  skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

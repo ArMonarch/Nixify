@@ -7,7 +7,9 @@
 }: {
   programs = {
     nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [libxcrypt-legacy];
+    nix-ld.libraries = with pkgs; [
+      libxcrypt-legacy
+    ];
   };
 
   # user setup
@@ -21,10 +23,12 @@
     shell = pkgs.fish;
 
     packages = [
+      pkgs.ghostty
       self'.packages.nixvim
       pkgs.fastfetch
       pkgs.htop
       pkgs.kdePackages.dolphin
+      pkgs.rose-pine-cursor
     ];
   };
 

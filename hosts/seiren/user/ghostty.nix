@@ -14,6 +14,9 @@ in {
       type = "copy";
       generator = keyValue.generate "config";
       value = {
+        # Theme
+        theme = "TokyoNight Night";
+
         # Window Padding
         window-padding-x = 0;
         window-padding-y = 0;
