@@ -10,7 +10,7 @@
     else "";
   extra_config = "--remember --asterisks --container-padding 2";
   theme = "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'";
-  time_format = "--time --time-format '%I:%M %p | %a • %h | %F'";
+  time_format = "--time --time-format '%B %d, %Y | %H:%M'";
 in {
   services.greetd = {
     enable = true;
