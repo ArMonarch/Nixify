@@ -109,6 +109,7 @@ in {
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
+          inputs.self.nixosModules.colorScheme
         ];
       };
     };
