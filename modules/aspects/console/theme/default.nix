@@ -1,0 +1,39 @@
+let
+  color.scheme = {
+    base00 = "222436";
+    base01 = "1e2030";
+    base02 = "2d3f76";
+    base03 = "3b4261";
+    base04 = "636da6";
+    base05 = "828bb8";
+    base06 = "aeb4d1";
+    base07 = "c8d3f5";
+    base08 = "ff757f";
+    base09 = "ffc777";
+    base0A = "ffdf77";
+    base0B = "c3e88d";
+    base0C = "86e1fc";
+    base0D = "82aaff";
+    base0E = "fca7ea";
+    base0F = "c53b53";
+  };
+in {
+  console.colors = with color.scheme; [
+    base00
+    base08
+    base0B
+    base0A
+    base0D
+    base0E
+    base0C
+    base05
+    base03
+    base08
+    base0B
+    base0A
+    base0D
+    base0E
+    base0C
+    base07
+  ];
+}

@@ -4,15 +4,11 @@
   # are different for each hosts and cannot be generalized. on the other hand
   # every other .nix are tweaks on their respective aspects configurations, tweaking
   # configurations that must vary from the aspect while using most of the aspects
-  imports =
-    [
-      ./fs.nix
-      ./hardware.nix
-      ./user # this also include home setup with hjem
-    ]
-    ++ [
-      ./stylix.nix
-    ];
+  imports = [
+    ./fs.nix
+    ./hardware.nix
+    ./user # this also include home setup with hjem
+  ];
 
   boot.loader.timeout = 10;
 
