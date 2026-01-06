@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.corePackages = with pkgs; [
     curl
+    fd
     findutils
     htop
     ripgrep
