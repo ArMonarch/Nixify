@@ -97,6 +97,7 @@ in {
           "localization"
           "nix/settings"
           "nixpkgs"
+          "programs/common"
           "programs/firefox"
           "quickshell/noctalia-shell"
           "services/audio/pipewire"
