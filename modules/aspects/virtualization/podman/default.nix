@@ -32,9 +32,12 @@
     };
   };
 
-  environment.corePackages = with pkgs; [
-    podman-compose
-    podman-desktop
+  environment.sessionVariables = {
+    DISTROBOX_CONTAINER_MANAGER = "podman";
+  };
+
+  environment.corePackages = [
+    pkgs.distrobox
   ];
 
   users.users.${username} = {
