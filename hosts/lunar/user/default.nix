@@ -1,5 +1,5 @@
 {
-  self',
+  inputs',
   config,
   username,
   pkgs,
@@ -25,7 +25,7 @@
         qbittorrent
         vlc
       ]
-      ++ [self'.packages.nixvim];
+      ++ [inputs'.Nixvim.packages.nixvim];
   };
 
   # hjem user home management setup

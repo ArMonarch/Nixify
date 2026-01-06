@@ -1,5 +1,5 @@
 {
-  self',
+  inputs',
   config,
   username,
   pkgs,
@@ -22,14 +22,16 @@
     home = "/home/${username}";
     shell = pkgs.fish;
 
-    packages = [
-      pkgs.ghostty
-      self'.packages.nixvim
-      pkgs.fastfetch
-      pkgs.htop
-      pkgs.kdePackages.dolphin
-      pkgs.rose-pine-cursor
-    ];
+    packages =
+      [
+        pkgs.ghostty
+        pkgs.fastfetch
+        pkgs.htop
+        pkgs.kdePackages.dolphin
+        pkgs.rose-pine-cursor
+        pkgs.jetbrains.idea-community-bin
+      ]
+      ++ [inputs'.nixvim.packages.nixvim];
   };
 
   # hjem user home management setup

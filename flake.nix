@@ -23,6 +23,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # my neovim with wrapped configuration
+    nixvim = {
+      url = "github:ArMonarch/Nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager alternative
     hjem = {
       url = "github:feel-co/hjem";

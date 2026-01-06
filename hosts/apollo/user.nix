@@ -1,7 +1,7 @@
 {
   pkgs,
   username,
-  self',
+  inputs',
   ...
 }: {
   users.mutableUsers = true;
@@ -11,7 +11,7 @@
     name = username;
     home = "/home/${username}";
     extraGroups = ["wheel"];
-    packages = with pkgs; [git ripgrep eza] ++ [self'.packages.nixvim];
+    packages = with pkgs; [git ripgrep eza] ++ [inputs'.nixvim.packages.nixvim];
     shell = pkgs.fish;
   };
 
