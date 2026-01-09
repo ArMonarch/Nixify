@@ -1,13 +1,5 @@
-{
-  niri ? false,
-  hyprland ? false,
-}: {pkgs, ...}: let
-  compositor_startcmd =
-    if niri == true
-    then "niri-session"
-    else if hyprland == true
-    then "hyprland"
-    else "";
+{pkgs, ...}: let
+  compositor_startcmd = "niri-session";
   extra_config = "--remember --asterisks --container-padding 2";
   theme = "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'";
   time_format = "--time --time-format '%B %d, %Y | %H:%M'";
@@ -25,10 +17,6 @@ in {
     };
   };
 
-  environment.corePackages = with pkgs; [
-    tuigreet
-  ];
-
   # this is a life saver.
   # literally no documentation about this anywhere.
   # might be good to write about this...
@@ -43,11 +31,4 @@ in {
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
-
-  assertions = [
-    {
-      assertion = niri == true || hyprland == true;
-      message = "any one {`hyperland` `niri` `plasma`} wayland compositer must be enabled";
-    }
-  ];
 }

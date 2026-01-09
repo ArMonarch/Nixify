@@ -22,13 +22,7 @@
     normalize = aspect:
       if builtins.isString aspect
       then aspectPaths + /${aspect}
-      else if builtins.isAttrs aspect
-      then let
-        path = aspect.path or (throw "aspect attrs must define `path`");
-        features = aspect.features or (throw "aspect attrs must define `features`");
-      in
-        importApply (aspectPaths + /${path}) features
-      else throw "type of aspect must be string or an attrs";
+      else throw "type of aspect must be string";
   in
     concatLists [
       (singleton options)
@@ -90,19 +84,14 @@ in {
           "cpu/intel"
           "console/fonts"
           "console/theme"
-          {
-            path = "displayManager/greetd";
-            features = {niri = true;};
-          }
+          "displayManager/greetd/tuigreet-niri"
           "localization"
           "nix/settings"
           "nixpkgs"
           "programs/common"
           "programs/firefox"
-          "quickshell/noctalia-shell"
           "services/audio/pipewire"
           "services/bluetooth"
-          "services/dbus"
           "services/power"
           "security"
           "shell/fish"
