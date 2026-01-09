@@ -1,17 +1,17 @@
 {pkgs, ...}: {
   programs.niri = {
     enable = true;
-    useNautilus = false;
+    useNautilus = true;
   };
 
   environment.corePackages = with pkgs; [
     brightnessctl
     fuzzel
     playerctl
-    swaybg
     wl-clipboard
     xkeyboard-config
     xwayland-satellite
+    nautilus
   ];
 
   fonts.packages = with pkgs; [
@@ -24,12 +24,15 @@
 
     unitConfig = {
       After = "niri.service";
-      Requisite = "niri.service";
+      Requires = "niri.service";
+      PartOf = "niri.service";
     };
 
     serviceConfig = {
       ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i '%h/Pictures/Wallpapers/default.jpg'";
       Restart = "on-failure";
     };
+
+    wantedBy = ["graphical-session.target"];
   };
 }
