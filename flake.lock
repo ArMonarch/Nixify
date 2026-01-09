@@ -126,11 +126,11 @@
         "wrappers": "wrappers"
       },
       "locked": {
-        "lastModified": 1767724484,
-        "narHash": "sha256-iiE8tUwDCzRU361F3MqNKzIG9+SxaCdX6xZ2tkQHx5I=",
+        "lastModified": 1767956381,
+        "narHash": "sha256-W2xJN56Xv0ckMRcfDEyWCMV0/4d2kGsEuSA0LkHUQjQ=",
         "owner": "ArMonarch",
         "repo": "Nixvim",
-        "rev": "082acd65598681e856c1d5723daac28d0c0e702c",
+        "rev": "37a652621a6efdc77f62768d61cd6d10b20c229e",
         "type": "github"
       },
       "original": {

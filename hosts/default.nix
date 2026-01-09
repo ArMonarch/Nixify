@@ -107,6 +107,7 @@ in {
           "security"
           "shell/fish"
           "system/network"
+          # "virtualization/podman"
           "waylandCompositors/niri"
         ];
         extraModules = [

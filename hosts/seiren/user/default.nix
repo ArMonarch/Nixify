@@ -29,9 +29,14 @@
         pkgs.htop
         pkgs.kdePackages.dolphin
         pkgs.rose-pine-cursor
-        pkgs.jetbrains.idea-community-bin
+        pkgs.jetbrains.idea-oss
+        pkgs.nyaa
+        pkgs.qbittorrent
+        pkgs.vlc
       ]
-      ++ [inputs'.nixvim.packages.nixvim];
+      ++ [
+        inputs'.nixvim.packages.nixvim
+      ];
   };
 
   # hjem user home management setup
