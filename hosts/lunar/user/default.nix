@@ -24,8 +24,9 @@
         nyaa
         qbittorrent
         vlc
+        jetbrains.idea-oss
       ]
-      ++ [inputs'.Nixvim.packages.nixvim];
+      ++ [inputs'.nixvim.packages.nixvim];
   };
 
   # hjem user home management setup
