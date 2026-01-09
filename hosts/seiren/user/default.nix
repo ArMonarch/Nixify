@@ -27,7 +27,6 @@
         pkgs.ghostty
         pkgs.fastfetch
         pkgs.htop
-        pkgs.kdePackages.dolphin
         pkgs.rose-pine-cursor
         pkgs.jetbrains.idea-oss
         pkgs.nyaa

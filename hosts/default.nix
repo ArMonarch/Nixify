@@ -107,8 +107,7 @@ in {
           "security"
           "shell/fish"
           "system/network"
-          # "virtualization/podman"
-          "waylandCompositors/niri"
+          "wayland/niri"
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
