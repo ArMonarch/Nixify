@@ -5,7 +5,6 @@
   qt6,
   quickshell,
   # runtime deps
-  brightnessctl,
   cliphist,
   ddcutil,
   imagemagick,
@@ -17,7 +16,6 @@
   ...
 }: let
   runtimeDeps = [
-    brightnessctl
     cliphist
     ddcutil
     imagemagick
