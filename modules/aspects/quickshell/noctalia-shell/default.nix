@@ -13,6 +13,7 @@
       matugen
       wget
       wlsunset
+      gpu-screen-recorder
       ;
   };
 in {
