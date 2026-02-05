@@ -10,6 +10,9 @@
     ./user # this also include home setup with hjem
   ];
 
+  networking.firewall.enable = true;
+  networking.firewall.allowedTCPPorts = [8080 3000];
+
   # folke tokyonight night scheme
   colorScheme = {
     base00 = "16161e";
@@ -29,7 +32,6 @@
     base0E = "bb9af7";
     base0F = "d18616";
   };
-
   boot.loader.timeout = 10;
 
   system.modules.shell.fish.features.integrations = ["eza" "git"];

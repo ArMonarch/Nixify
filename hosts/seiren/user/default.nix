@@ -12,6 +12,8 @@
     ];
   };
 
+  environment.corePackages = with pkgs; [remmina];
+
   # user setup
   users.mutableUsers = true;
   users.users.${username} = {
@@ -32,11 +34,19 @@
         pkgs.nyaa
         pkgs.qbittorrent
         pkgs.vlc
+        pkgs.qimgv
+        pkgs.rhythmbox
+        pkgs.postman
+        pkgs.thunderbird
+        pkgs.mysql-workbench
+        pkgs.zed-editor-fhs
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
       ];
   };
+
+  fonts.packages = with pkgs; [noto-fonts];
 
   # hjem user home management setup
   hjem.users.${username} = {
