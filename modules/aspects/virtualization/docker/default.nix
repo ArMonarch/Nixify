@@ -21,6 +21,8 @@
   ];
 
   users.users.${username} = {
-    extraGroups = ["docker"];
+    extraGroups = [
+      "docker"
+    ];
   };
 }
