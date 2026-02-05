@@ -5,6 +5,7 @@
   qt6,
   quickshell,
   # runtime deps
+  gpu-screen-recorder,
   cliphist,
   ddcutil,
   imagemagick,
@@ -16,6 +17,7 @@
   ...
 }: let
   runtimeDeps = [
+    gpu-screen-recorder
     cliphist
     ddcutil
     imagemagick
