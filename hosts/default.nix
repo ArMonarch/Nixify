@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib) concatLists singleton;
-  inherit (lib.modules) importApply;
   inherit (nixify-lib) mkNixosSystem;
 
   # Specify root path for the modules. The concept is similar to modulesPath
@@ -51,6 +50,7 @@ in {
           "boot-loader/grub"
           "boot-loader/efi-support"
           "cpu/intel"
+          "console/theme"
           "desktopManager/plasma"
           "displayManager/sddm"
           "gpu/intel-nvidia"
@@ -68,6 +68,7 @@ in {
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
+          inputs.self.nixosModules.colorScheme
         ];
       };
     };
@@ -85,18 +86,23 @@ in {
           "console/fonts"
           "console/theme"
           "displayManager/greetd/tuigreet-niri"
+          "gpu/intel-nvidia"
           "localization"
           "nix/settings"
           "nixpkgs"
           "programs/common"
           "programs/firefox"
           "services/audio/pipewire"
+          "quickshell/noctalia-shell"
           "services/bluetooth"
           "services/power"
           "security"
           "shell/fish"
           "system/network"
+          "virtualization/distrobox"
+          "virtualization/docker"
           "wayland/niri"
+          "wayland/swaybg"
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
