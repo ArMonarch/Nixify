@@ -92,6 +92,7 @@ in {
           "nixpkgs"
           "programs/common"
           "programs/firefox"
+          "programs/discord/legcord"
           "services/audio/pipewire"
           "quickshell/noctalia-shell"
           "services/bluetooth"
