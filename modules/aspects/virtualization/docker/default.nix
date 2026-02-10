@@ -16,6 +16,14 @@
     };
   };
 
+  # set the distrobox container manager environment variable to docker
+  # even if distrobox is not installed
+  # later move this to dostrobox and add checks if either
+  # docker or podman is enabled if distrobox is enabled
+  environment.sessionVariables = {
+    DISTROBOX_CONTAINER_MANAGER = "docker";
+  };
+
   environment.corePackages = with pkgs; [
     docker-compose
   ];
