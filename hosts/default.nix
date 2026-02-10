@@ -114,43 +114,6 @@ in {
       };
     };
 
-    lunaris = mkNixosSystem {
-      hostname = "lunaris";
-      username = "frenzfries";
-      system = "x86_64-linux";
-      modules = mkModulesFor "lunaris" {
-        aspects = [
-          "boot/kernel/zen"
-          "boot-loader/grub"
-          "boot-loader/efi-support"
-          "cpu/intel"
-          "console/fonts"
-          "console/theme"
-          "desktopManager/plasma"
-          "displayManager/sddm"
-          "gpu/intel-nvidia"
-          "localization"
-          "nix/settings"
-          "nixpkgs"
-          "programs/common"
-          "programs/firefox"
-          "programs/discord/legcord"
-          "services/pipewire"
-          "services/bluetooth"
-          "services/power"
-          "security"
-          "shell/fish"
-          "system/network"
-          "virtualization/distrobox"
-          "virtualization/docker"
-        ];
-        extraModules = [
-          inputs.hjem.nixosModules.default
-          inputs.self.nixosModules.colorScheme
-        ];
-      };
-    };
-
     apollo = mkNixosSystem {
       hostname = "apollo";
       username = "frenzfries";
