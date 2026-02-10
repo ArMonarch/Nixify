@@ -46,14 +46,14 @@ in {
       system = "x86_64-linux";
       modules = mkModulesFor "lunar" {
         aspects = [
-          "boot/kernel/zen"
           "boot-loader/grub"
-          "boot-loader/efi-support"
+          "boot-loader/grub/efi"
           "cpu/intel"
           "console/theme"
           "desktopManager/plasma"
           "displayManager/sddm"
           "gpu/intel-nvidia"
+          "kernel/zen"
           "localization"
           "nix/settings"
           "nixpkgs"
@@ -79,14 +79,14 @@ in {
       system = "x86_64-linux";
       modules = mkModulesFor "seiren" {
         aspects = [
-          "boot/kernel/zen"
           "boot-loader/grub"
-          "boot-loader/efi-support"
+          "boot-loader/grub/efi"
           "cpu/intel"
           "console/fonts"
           "console/theme"
           "displayManager/greetd/tuigreet-niri"
           "gpu/intel-nvidia"
+          "kernel/zen"
           "localization"
           "nix/settings"
           "nixpkgs"
@@ -120,8 +120,8 @@ in {
       system = "x86_64-linux";
       modules = mkModulesFor "apollo" {
         aspects = [
-          "boot/kernel/zen"
           "boot-loader/grub"
+          "kernel/zen"
           "localization"
           "nix/settings"
           "system/network"
