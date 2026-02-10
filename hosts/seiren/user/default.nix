@@ -12,7 +12,9 @@
     ];
   };
 
-  environment.corePackages = with pkgs; [remmina];
+  environment.corePackages = with pkgs; [
+    remmina
+  ];
 
   # user setup
   users.mutableUsers = true;
@@ -28,18 +30,22 @@
       [
         pkgs.ghostty
         pkgs.fastfetch
+        pkgs.oculante
+        pkgs.kdePackages.okular
         pkgs.htop
         pkgs.rose-pine-cursor
         pkgs.jetbrains.idea-oss
         pkgs.nyaa
         pkgs.qbittorrent
         pkgs.vlc
-        pkgs.qimgv
         pkgs.rhythmbox
         pkgs.postman
         pkgs.thunderbird
         pkgs.mysql-workbench
-        pkgs.zed-editor-fhs
+        pkgs.zed-editor
+        pkgs.zellij
+        pkgs.filezilla
+        pkgs.code-cursor-fhs
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
