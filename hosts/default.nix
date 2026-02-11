@@ -26,9 +26,8 @@
     concatLists [
       (singleton options)
 
-      (builtins.map normalize aspects)
       (singleton ./${host}/host.nix)
-
+      (builtins.map normalize aspects)
       extraModules
     ];
 in {
@@ -82,7 +81,6 @@ in {
           "boot-loader/grub"
           "boot-loader/grub/efi"
           "cpu/intel"
-          "console/fonts"
           "console/theme"
           "displayManager/greetd/tuigreet-niri"
           "gpu/intel-nvidia"
@@ -93,12 +91,10 @@ in {
           "programs/common"
           "programs/firefox"
           "programs/discord/legcord"
-          "programs/rmpc"
           "quickshell/noctalia-shell"
           "services/pipewire"
           "services/bluetooth"
           "services/power"
-          "services/mpd"
           "security"
           "shell/fish"
           "system/network"

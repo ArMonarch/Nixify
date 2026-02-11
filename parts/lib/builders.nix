@@ -30,7 +30,9 @@ in {
           inherit inputs self' inputs';
         };
         modules =
-          [{nixpkgs.hostPlatform = mkDefault system;}]
+          [
+            {nixpkgs.hostPlatform = mkDefault system;}
+          ]
           ++ modules;
       });
 }
