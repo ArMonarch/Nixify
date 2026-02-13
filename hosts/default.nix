@@ -90,6 +90,7 @@ in {
           "nixpkgs"
           "programs/common"
           "programs/firefox"
+          "programs/ghostty"
           "programs/discord/legcord"
           "quickshell/noctalia-shell"
           "services/pipewire"

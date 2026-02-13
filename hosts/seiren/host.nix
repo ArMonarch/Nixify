@@ -13,6 +13,9 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [8080 3000];
 
+  # update some nixify.programs.ghostty default config
+  nixify.aspect.programs.ghostty.font = "iosevka";
+
   # folke tokyonight night scheme
   colorScheme = {
     base00 = "16161e";
