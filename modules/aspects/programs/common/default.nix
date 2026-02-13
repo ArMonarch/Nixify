@@ -11,8 +11,4 @@
     yazi
     unzip
   ];
-
-  environment.defaultPackages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
 }
