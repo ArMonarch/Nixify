@@ -103,7 +103,9 @@ in {
         ];
 
         serviceConfig = {
-          ExecStartPre = ''${pkgs.bash}/bin/bash -c "${pkgs.coreutils}/bin/mkdir -p '${cfg.dataDirectory}' '${cfg.playlistDirectory}'"'';
+          ExecStartPre = ''
+            ${pkgs.bash}/bin/bash -c "${pkgs.coreutils}/bin/mkdir -p '${cfg.dataDirectory}' '${cfg.playlistDirectory}'"
+          '';
           ExecStart = "${cfg.package}/bin/mpd --no-daemon ${mpdConfig}";
           Type = "notify";
         };
@@ -137,10 +139,12 @@ in {
     };
 
     environment.variables = {
-      MPD_HOST = "$XDG_RUNTIME_DIR/mpd/socket";
-      MPD_PORT = "${builtins.toString cfg.network.port}";
+      MPD_HOST = builtins.toString cfg.network.listenAddress;
+      MPD_PORT = builtins.toString cfg.network.port;
     };
 
-    environment.corePackages = with pkgs; [mpc];
+    environment.corePackages = with pkgs; [
+      mpc
+    ];
   };
 }
