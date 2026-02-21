@@ -32,6 +32,20 @@
     # home-manager alternative
     hjem = {
       url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.smfh.follows = "smfh";
+    };
+
+    # hjem dependencies
+    smfh = {
+      url = "github:feel-co/smfh";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
+
+    # smfh dependencies
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
