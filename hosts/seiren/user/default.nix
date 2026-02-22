@@ -33,18 +33,12 @@
         pkgs.kdePackages.okular
         pkgs.htop
         pkgs.rose-pine-cursor
-        pkgs.jetbrains.idea-oss
         pkgs.nyaa
-        pkgs.tailscale
         pkgs.qbittorrent
         pkgs.vlc
-        pkgs.rhythmbox
-        pkgs.postman
         pkgs.thunderbird
-        pkgs.mysql-workbench
         pkgs.zed-editor
-        pkgs.zellij
-        pkgs.code-cursor-fhs
+        pkgs.vscode-fhs
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
@@ -52,6 +46,7 @@
   };
 
   # hjem user home management setup
+  hjem.linker = inputs'.smfh.packages.default;
   hjem.users.${username} = {
     enable = true;
     clobberFiles = true;
