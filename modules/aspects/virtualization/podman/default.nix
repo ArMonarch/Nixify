@@ -36,7 +36,7 @@
     DISTROBOX_CONTAINER_MANAGER = "podman";
   };
 
-  environment.corePackages = [
+  environment.systemPackages = [
     pkgs.distrobox
   ];
 

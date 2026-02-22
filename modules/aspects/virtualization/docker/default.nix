@@ -24,7 +24,7 @@
     DISTROBOX_CONTAINER_MANAGER = "docker";
   };
 
-  environment.corePackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     docker-compose
   ];
 

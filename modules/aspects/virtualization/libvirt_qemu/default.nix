@@ -15,7 +15,7 @@
     };
   };
 
-  environment.corePackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     virt-manager
     virt-viewer
   ];

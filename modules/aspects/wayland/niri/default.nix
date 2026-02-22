@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   programs.niri = {
     enable = true;
-    useNautilus = true;
+    useNautilus = false;
   };
 
-  environment.corePackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     brightnessctl
     fuzzel
     playerctl

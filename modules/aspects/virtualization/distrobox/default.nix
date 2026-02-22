@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.corePackages = [
+  environment.systemPackages = [
     pkgs.distrobox
   ];
 }
