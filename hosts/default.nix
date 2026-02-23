@@ -12,7 +12,6 @@
   modulePath = ../modules;
 
   aspectPaths = modulePath + /aspects; # the module that define an aspect of the confuguration
-  options = modulePath + /options; # the module that provides the options for my system configuration
 
   mkModulesFor = host: {
     aspects ? [],
@@ -24,8 +23,6 @@
       else throw "type of aspect must be string";
   in
     concatLists [
-      (singleton options)
-
       (singleton ./${host}/host.nix)
       (builtins.map normalize aspects)
       extraModules

@@ -42,8 +42,6 @@
   };
   boot.loader.timeout = 10;
 
-  system.modules.shell.fish.features.integrations = ["eza" "git"];
-
   hardware.nvidia = {
     prime.intelBusId = "PCI:0:2:0";
     prime.nvidiaBusId = "PCI:1:0:0";

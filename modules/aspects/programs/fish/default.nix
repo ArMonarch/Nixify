@@ -40,7 +40,7 @@ in {
         (lib.modules.mkIf
           (builtins.elem "eza" cfg.integrations)
           {
-            glg = "git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %C(green)(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit";
+            glog = "git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %C(green)(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit";
           })
 
         (lib.modules.mkIf (builtins.elem "eza" cfg.integrations) {
