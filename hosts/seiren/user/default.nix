@@ -12,10 +12,6 @@
     ];
   };
 
-  environment.corePackages = with pkgs; [
-    remmina
-  ];
-
   # user setup
   users.mutableUsers = true;
   users.users.${username} = {
@@ -39,6 +35,7 @@
         pkgs.thunderbird
         pkgs.zed-editor
         pkgs.vscode-fhs
+        pkgs.claude-code
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
@@ -54,8 +51,5 @@
     imports = [
       ./git.nix
     ];
-    xdg.config.files."niri/config.kdl" = {
-      source = ./niri_config.kdl;
-    };
   };
 }

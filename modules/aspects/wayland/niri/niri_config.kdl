@@ -36,7 +36,6 @@ output "eDP-1" {
   // off
 
   // Resolution and, optionally, refresh rate of the output.
-  // format: focus-at-startup
   // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
   mode "1920x1080@165.004"
 
@@ -50,10 +49,32 @@ output "eDP-1" {
   // Output scale and rotation has to be taken into account for positioning:
   // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
   position x=0 y=0
+
   // enable variable-refresh-rate with on demand arg
   // variable-refresh-rate on-demand=true
   // set this display as the main display at startup
   focus-at-startup
+
+  // define hot-corners points
+  hot-corners {
+    top-left
+  }
+}
+
+output "HDMI-A-2" {
+  // Uncomment this line to disable this output.
+  // off
+
+  // Resolution and, optionally, refresh rate of the output.
+  mode "1920x1080@100.000"
+
+  // integer or fractional scale, scaling factor
+  scale 1
+
+  transform "normal"
+
+  position x=0 y=-1080
+
   // define hot-corners points
   hot-corners {
     top-left
