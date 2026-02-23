@@ -11,7 +11,12 @@
   ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [8080 3000];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 3000;
+      to = 9000;
+    }
+  ];
 
   # update some nixify.programs.ghostty default config
   nixify.aspect.programs.ghostty.font = "iosevka";
