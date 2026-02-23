@@ -38,7 +38,7 @@ in {
 
       shellAliases = lib.modules.mkMerge [
         (lib.modules.mkIf
-          (builtins.elem "eza" cfg.integrations)
+          (builtins.elem "git" cfg.integrations)
           {
             glog = "git log --graph --pretty=format:'%Cred%h%Creset - %C(yellow)%d%Creset %s %C(green)(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit";
           })
