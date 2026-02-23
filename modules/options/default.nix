@@ -1,5 +1,0 @@
-{
-  imports = [
-    ./shell/fish.nix
-  ];
-}

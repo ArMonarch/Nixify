@@ -58,11 +58,11 @@ in {
           "nixpkgs"
           "programs/common"
           "programs/firefox"
+          "programs/fish"
           "security"
           "services/pipewire"
           "services/bluetooth"
           "services/printing"
-          "shell/fish"
           "system/network"
         ];
         extraModules = [
@@ -90,6 +90,7 @@ in {
           "nixpkgs"
           "programs/common"
           "programs/firefox"
+          "programs/fish"
           "programs/ghostty"
           "programs/rmpc"
           "programs/discord/legcord"
@@ -99,7 +100,6 @@ in {
           "services/pipewire"
           "services/power"
           "security"
-          "shell/fish"
           "system/network"
           "virtualization/distrobox"
           "virtualization/docker"
