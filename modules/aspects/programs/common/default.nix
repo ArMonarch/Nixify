@@ -4,8 +4,8 @@
     fd
     findutils
     htop
+    btop
     ripgrep
-    rsync
     tldr
     wget
     yazi
