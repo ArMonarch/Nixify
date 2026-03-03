@@ -110,23 +110,6 @@ in {
       };
     };
 
-    apollo = mkNixosSystem {
-      hostname = "apollo";
-      username = "frenzfries";
-      system = "x86_64-linux";
-      modules = mkModulesFor "apollo" {
-        aspects = [
-          "boot-loader/grub"
-          "kernel/zen"
-          "localization"
-          "nix/settings"
-          "system/network"
-          "security"
-          "services/openssh"
-        ];
-      };
-    };
-
     maclaurin = mkNixosSystem {
       hostname = "maclaurin";
       username = "frenzfries";
@@ -136,8 +119,16 @@ in {
           "boot-loader/grub"
           "boot-loader/grub/efi"
           "localization"
+          "programs/common"
+          "programs/fish"
           "nix/settings"
           "nixpkgs"
+          "security"
+          "system/network"
+        ];
+        extraModules = [
+          inputs.hjem.nixosModules.default
+          inputs.self.nixosModules.colorScheme
         ];
       };
     };

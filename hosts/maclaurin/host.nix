@@ -17,16 +17,6 @@
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.frenzfries = {
-    isNormalUser = true;
-    description = "frenzfries";
-    extraGroups = ["networkmanager" "wheel"];
-    packages = [
-      inputs'.nixvim.packages.nixvim
-    ];
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
