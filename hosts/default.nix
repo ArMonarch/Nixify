@@ -126,5 +126,20 @@ in {
         ];
       };
     };
+
+    maclaurin = mkNixosSystem {
+      hostname = "maclaurin";
+      username = "frenzfries";
+      system = "aarch64-linux";
+      modules = mkModulesFor "maclaurin" {
+        aspects = [
+          "boot-loader/grub"
+          "boot-loader/grub/efi"
+          "localization"
+          "nix/settings"
+          "nixpkgs"
+        ];
+      };
+    };
   };
 }

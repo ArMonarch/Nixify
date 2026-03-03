@@ -14,6 +14,5 @@
         })
       '';
     };
-    pam.services.swaylock = {};
   };
 }
