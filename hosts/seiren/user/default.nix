@@ -26,7 +26,6 @@
       [
         pkgs.fastfetch
         pkgs.oculante
-        pkgs.kdePackages.okular
         pkgs.htop
         pkgs.rose-pine-cursor
         pkgs.nyaa
@@ -34,8 +33,6 @@
         pkgs.vlc
         pkgs.thunderbird
         pkgs.zed-editor
-        pkgs.vscode-fhs
-        pkgs.dbeaver-bin
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
