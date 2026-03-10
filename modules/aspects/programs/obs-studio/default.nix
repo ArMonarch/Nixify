@@ -3,8 +3,11 @@
     enable = true;
     package = pkgs.obs-studio.override {
       cudaSupport = true;
-      pulseaudioSupport = false;
+      pulseaudioSupport = true;
       pipewireSupport = true;
     };
+    plugins = with pkgs.obs-studio-plugins; [
+      wlrobs
+    ];
   };
 }
