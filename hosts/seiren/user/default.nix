@@ -35,10 +35,11 @@
         pkgs.thunderbird
         pkgs.zed-editor
         pkgs.vscode-fhs
-        pkgs.claude-code
+        pkgs.dbeaver-bin
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
+        inputs'.claude-code.packages.claude-code-bun
       ];
   };
 

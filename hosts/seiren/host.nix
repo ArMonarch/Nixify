@@ -19,7 +19,7 @@
   ];
 
   # update some nixify.programs.ghostty default config
-  nixify.aspect.programs.ghostty.font = "iosevka";
+  nixify.aspect.programs.ghostty.font = "jetbrains";
 
   # folke tokyonight night scheme
   colorScheme = {
