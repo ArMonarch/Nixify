@@ -1,12 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  pkgs,
-  inputs',
-  ...
-}: {
-  imports = [./fs.nix ./user.nix];
+{pkgs, ...}: {
+  imports = [
+    ./fs.nix
+    ./user.nix
+  ];
 
   # Set your time zone.
   time.timeZone = "Asia/Kathmandu";
@@ -17,13 +16,9 @@
     variant = "";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim
-    curl
-    git
-  ];
+  nixify.aspect.programs.ghostty.settings = {
+    window-decoration = "server";
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

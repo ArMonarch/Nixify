@@ -118,9 +118,12 @@ in {
         aspects = [
           "boot-loader/grub"
           "boot-loader/grub/efi"
+          "desktopManager/plasma"
+          "displayManager/sddm"
           "localization"
           "programs/common"
           "programs/fish"
+          "programs/ghostty"
           "nix/settings"
           "nixpkgs"
           "security"
