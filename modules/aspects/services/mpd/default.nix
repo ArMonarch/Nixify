@@ -38,7 +38,7 @@ in {
 
     musicDirectory = lib.options.mkOption {
       type = lib.types.either lib.types.path lib.types.str;
-      default = "/home/${username}/music";
+      default = "/home/${username}/Music";
       apply = builtins.toString; # Prevent copies to Nix store.
       description = "The directory where mpd reads music from.";
     };
