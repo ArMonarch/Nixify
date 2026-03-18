@@ -106,9 +106,8 @@ layout {
 
   // "switch-preset-column-width" (Mod+R) toggles between.
   preset-column-widths {
-    proportion 0.33333
     proportion 0.5
-    proportion 0.66667
+    proportion 0.9
   }
 
   // "switch-preset-window-height" (Mod+Shift+R) toggles between.
@@ -200,10 +199,16 @@ window-rule {
   open-floating true
 }
 
-// make all firefox take 0.7 space on start
+// make all firefox take 0.8 space on start
 window-rule {
   match app-id=r#"firefox"#
-  default-column-width { proportion 0.7; }
+  default-column-width { proportion 0.8; }
+}
+
+// make all ghostty terminal take 0.9 space
+window-rule {
+  match app-id=r#"ghostty"#
+  default-column-width { proportion 0.9; }
 }
 
 // Example: block out two password managers from screen capture.
