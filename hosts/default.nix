@@ -89,6 +89,7 @@ in {
           "programs/firefox"
           "programs/fish"
           "programs/ghostty"
+          "programs/nixfetch"
           "programs/obs-studio"
           "programs/rmpc"
           "programs/discord/legcord"

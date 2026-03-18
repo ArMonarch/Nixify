@@ -24,9 +24,7 @@
 
     packages =
       [
-        pkgs.fastfetch
         pkgs.oculante
-        pkgs.htop
         pkgs.rose-pine-cursor
         pkgs.nyaa
         pkgs.qbittorrent
@@ -41,7 +39,6 @@
   };
 
   # hjem user home management setup
-  hjem.linker = inputs'.smfh.packages.default;
   hjem.users.${username} = {
     enable = true;
     clobberFiles = true;
@@ -50,4 +47,5 @@
       ./git.nix
     ];
   };
+  hjem.linker = inputs'.smfh.packages.default;
 }
