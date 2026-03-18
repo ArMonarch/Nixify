@@ -2,9 +2,8 @@
   environment.systemPackages = with pkgs; [
     curl
     fd
-    findutils
+    file
     htop
-    btop
     ripgrep
     tldr
     wget
