@@ -29,6 +29,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # nixfetch: fetch util wirtten in odin lang
+    nixfetch = {
+      url = "github:ArMonarch/nixfetch";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+
     # home-manager alternative
     hjem = {
       url = "github:feel-co/hjem";

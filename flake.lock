@@ -125,6 +125,33 @@
         "type": "github"
       }
     },
+    "nixfetch": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "odin-overlay": "odin-overlay",
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773678093,
+        "narHash": "sha256-tsLBnGN8DUH2FIPtxrrrCIN1+F9gH9qgvX5T5ITLmLk=",
+        "owner": "ArMonarch",
+        "repo": "nixfetch",
+        "rev": "d200653a95535dc782a6eedca18276e07597cb3e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ArMonarch",
+        "repo": "nixfetch",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1771208521,
@@ -180,11 +207,33 @@
         "type": "github"
       }
     },
+    "odin-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nixfetch",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773308690,
+        "narHash": "sha256-qjLM3pwhvbo4QQmX0kO63Mq4FF1zLDdNw1gGFFW3K2A=",
+        "owner": "ArMonarch",
+        "repo": "odin-overlay",
+        "rev": "97b45bd7b09a4fb34bcc4b5cfdbcc4d70c076a7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ArMonarch",
+        "repo": "odin-overlay",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "claude-code": "claude-code",
         "flake-parts": "flake-parts",
         "hjem": "hjem",
+        "nixfetch": "nixfetch",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
