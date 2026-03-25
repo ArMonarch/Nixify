@@ -106,10 +106,10 @@ in {
             "ctrl+shift+|=new_split:right"
             "ctrl+shift+-=new_split:down"
 
-            "ctrl+shift+j=goto_split:bottom"
-            "ctrl+shift+k=goto_split:top"
-            "ctrl+shift+h=goto_split:left"
-            "ctrl+shift+l=goto_split:right"
+            "ctrl+j=goto_split:bottom"
+            "ctrl+k=goto_split:top"
+            "ctrl+h=goto_split:left"
+            "ctrl+l=goto_split:right"
 
             "ctrl+shift+n=new_window"
             "ctrl+shift+t=new_tab"

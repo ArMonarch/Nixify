@@ -24,6 +24,7 @@
 
     packages =
       [
+        pkgs.lazygit
         pkgs.oculante
         pkgs.rose-pine-cursor
         pkgs.nyaa
@@ -31,6 +32,7 @@
         pkgs.vlc
         pkgs.thunderbird
         pkgs.zed-editor
+        pkgs.libreoffice-fresh
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
