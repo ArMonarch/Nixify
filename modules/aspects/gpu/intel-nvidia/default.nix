@@ -6,7 +6,13 @@
 }: let
   inherit (lib.modules) mkForce;
 in {
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      nvidia-vaapi-driver
+    ];
+  };
 
   services.xserver.videoDrivers = ["modesetting" "nvidia"];
 
@@ -30,6 +36,11 @@ in {
 
     # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
     nvidiaSettings = true;
+  };
+
+  environment.sessionVariables = {
+    NVD_BACKEND = "direct";
+    LIBVA_DRIVER_NAME = "iHD";
   };
 
   # Additional useful packages
