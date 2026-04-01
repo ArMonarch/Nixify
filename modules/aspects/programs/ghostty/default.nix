@@ -81,9 +81,10 @@ in {
           window-inherit-working-directory = true;
 
           # window property
+          window-width = 128;
+          window-height = 32;
           window-decoration = "none";
           window-theme = "system";
-          window-save-state = "never";
 
           # shell integration features
           shell-integration-features = "no-cursor, title, ssh-terminfo, ssh-env";
