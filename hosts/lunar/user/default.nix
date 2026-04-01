@@ -17,14 +17,12 @@
 
     packages = with pkgs;
       [
-        ghostty
-        fastfetch
         wl-clipboard
         lazygit
         nyaa
         qbittorrent
         vlc
-        jetbrains.idea-oss
+        thunderbird
       ]
       ++ [inputs'.nixvim.packages.nixvim];
   };
@@ -38,4 +36,5 @@
       ./config_files.nix
     ];
   };
+  hjem.linker = inputs'.smfh.packages.default;
 }
