@@ -1,3 +1,6 @@
+###################################################
+# Chromium browser with VA-API hardware acceleration for NixOS
+###################################################
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     chromium.override

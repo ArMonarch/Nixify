@@ -1,3 +1,6 @@
+###################################################
+# Rmpc MPD client configuration for NixOS with selectable config and theme profiles
+###################################################
 {
   lib,
   pkgs,

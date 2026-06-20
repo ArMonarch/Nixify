@@ -1,3 +1,6 @@
+###################################################
+# GRUB boot-loader configuration for NixOS (enables GRUB with OS prober, disables systemd-boot)
+###################################################
 {
   # enable and default configurations for grub boot-loader
   boot.loader.grub = {

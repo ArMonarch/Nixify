@@ -1,3 +1,6 @@
+###################################################
+# Applies the active colorScheme to the virtual console palette for NixOS
+###################################################
 {
   config,
   lib,

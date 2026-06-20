@@ -1,3 +1,6 @@
+###################################################
+# Enables Podman with Docker compatibility, auto-pruning, and Distrobox integration
+###################################################
 {
   username,
   pkgs,

@@ -1,3 +1,6 @@
+###################################################
+# Sets the system hostname and enables NetworkManager for the user
+###################################################
 {
   hostname,
   username,

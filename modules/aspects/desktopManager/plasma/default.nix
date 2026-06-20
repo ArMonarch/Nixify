@@ -1,3 +1,6 @@
+###################################################
+# KDE Plasma 6 desktop environment configuration for NixOS
+###################################################
 {pkgs, ...}: {
   imports = [../common.nix];
 

@@ -1,3 +1,6 @@
+###################################################
+# PulseAudio sound server configuration for NixOS
+###################################################
 {
   services.pulseaudio = {
     enable = true;

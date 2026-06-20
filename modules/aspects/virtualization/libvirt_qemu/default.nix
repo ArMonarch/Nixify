@@ -1,3 +1,6 @@
+###################################################
+# Enables libvirtd/QEMU KVM virtualization with SPICE USB redirection and virt-manager
+###################################################
 {
   username,
   pkgs,

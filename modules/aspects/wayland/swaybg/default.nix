@@ -1,3 +1,6 @@
+###################################################
+# swaybg Wayland wallpaper systemd user service for NixOS
+###################################################
 {pkgs, ...}: {
   systemd.user.services."swaybg" = {
     name = "swaybg.service";

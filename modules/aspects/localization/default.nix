@@ -1,3 +1,6 @@
+###################################################
+# Sets the default locale and per-category locale settings to en_US.UTF-8 for NixOS
+###################################################
 {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";

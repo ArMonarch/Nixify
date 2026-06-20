@@ -1,3 +1,6 @@
+###################################################
+# Nixfetch system info tool configuration, run on every interactive fish start
+###################################################
 {
   config,
   lib,

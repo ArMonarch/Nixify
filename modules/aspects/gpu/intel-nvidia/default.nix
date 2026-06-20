@@ -1,3 +1,6 @@
+###################################################
+# Intel + NVIDIA hybrid graphics (PRIME offload) configuration for NixOS
+###################################################
 {
   config,
   lib,

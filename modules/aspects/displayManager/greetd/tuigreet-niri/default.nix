@@ -1,3 +1,6 @@
+###################################################
+# greetd display manager with tuigreet greeter launching the Niri session
+###################################################
 {pkgs, ...}: let
   compositor_startcmd = "niri-session";
   extra_config = "--remember --asterisks --container-padding 2";

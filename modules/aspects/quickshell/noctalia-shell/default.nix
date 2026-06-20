@@ -1,3 +1,6 @@
+###################################################
+# Noctalia Quickshell desktop shell with its runtime dependencies for NixOS
+###################################################
 {
   self',
   pkgs,

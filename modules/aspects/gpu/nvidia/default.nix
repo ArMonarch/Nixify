@@ -1,3 +1,6 @@
+###################################################
+# NVIDIA dedicated GPU driver configuration for NixOS
+###################################################
 {
   config,
   pkgs,

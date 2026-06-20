@@ -1,3 +1,6 @@
+###################################################
+# GNOME desktop environment configuration for NixOS
+###################################################
 {
   imports = [../common.nix];
 

@@ -1,3 +1,6 @@
+###################################################
+# Polkit rules allowing the users group to reboot and power off without authentication
+###################################################
 {
   security = {
     polkit = {

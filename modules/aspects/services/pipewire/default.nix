@@ -1,3 +1,6 @@
+###################################################
+# PipeWire audio server (ALSA/PulseAudio) configuration for NixOS
+###################################################
 {
   services.pipewire = {
     enable = true;

@@ -1,3 +1,6 @@
+###################################################
+# Niri Wayland compositor with portals, utilities, and user config for NixOS
+###################################################
 {
   lib,
   pkgs,

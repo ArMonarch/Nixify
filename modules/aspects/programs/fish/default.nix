@@ -1,3 +1,6 @@
+###################################################
+# Fish shell configuration for NixOS with optional eza and git integrations
+###################################################
 {
   lib,
   pkgs,

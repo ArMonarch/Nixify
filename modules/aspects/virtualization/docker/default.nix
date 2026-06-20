@@ -1,3 +1,6 @@
+###################################################
+# Enables the Docker daemon with image registries, docker-compose, and Distrobox integration
+###################################################
 {
   username,
   pkgs,
