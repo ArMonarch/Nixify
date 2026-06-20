@@ -13,11 +13,7 @@
   # tweak nixify's ghostty defaults for this host
   nixify.aspect.programs.ghostty = {
     font = "jetbrains";
-    settings = {
-      window-decoration = "server";
-      # run nixfetch once on terminal launch, then drop into an interactive fish
-      command = ''/bin/sh -c "nixfetch; exec fish"'';
-    };
+    settings.window-decoration = "server";
   };
 
   # folke tokyonight night scheme
