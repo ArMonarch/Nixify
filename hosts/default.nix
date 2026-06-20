@@ -99,6 +99,7 @@ in {
           "programs/ghostty"
           "programs/nixfetch"
           "programs/obs-studio"
+          "programs/protonvpn"
           "programs/rmpc"
           "services/bluetooth"
           "services/mpd"
