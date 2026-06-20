@@ -23,7 +23,6 @@ in {
   };
 
   # hjem user home management setup
-  hjem.linker = inputs'.smfh.packages.default;
   hjem.users.${username} = {
     enable = true;
     clobberFiles = true;

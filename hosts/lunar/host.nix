@@ -10,14 +10,15 @@
     ./user # this also include home setup with hjem
   ];
 
-  # update some nixify.programs.ghostty default config
-  nixify.aspect.programs.ghostty.settings = {
-    window-decoration = "server";
+  # tweak nixify's ghostty defaults for this host
+  nixify.aspect.programs.ghostty = {
+    font = "jetbrains";
+    settings = {
+      window-decoration = "server";
+      # run nixfetch once on terminal launch, then drop into an interactive fish
+      command = ''/bin/sh -c "nixfetch; exec fish"'';
+    };
   };
-  nixify.aspect.programs.ghostty.font = "jetbrains";
-
-  #  add nixfetch with fish on every terminal init
-  programs.fish.promptInit = "nixfetch";
 
   # folke tokyonight night scheme
   colorScheme = {

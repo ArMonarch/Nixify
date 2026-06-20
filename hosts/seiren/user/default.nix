@@ -25,18 +25,17 @@
     packages =
       [
         pkgs.lazygit
-        pkgs.oculante
         pkgs.rose-pine-cursor
+        pkgs.scrcpy
+        pkgs.mangohud
         pkgs.nyaa
         pkgs.qbittorrent
         pkgs.vlc
-        pkgs.thunderbird
         pkgs.zed-editor
-        pkgs.libreoffice-fresh
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
-        inputs'.claude-code.packages.claude-code-bun
+        inputs'.claude-code.packages.claude-code
       ];
   };
 
@@ -49,5 +48,4 @@
       ./git.nix
     ];
   };
-  hjem.linker = inputs'.smfh.packages.default;
 }

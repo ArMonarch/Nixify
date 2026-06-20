@@ -41,20 +41,12 @@
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.smfh.follows = "smfh";
     };
 
-    # hjem dependencies
-    smfh = {
-      url = "github:feel-co/smfh";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.rust-overlay.follows = "rust-overlay";
-    };
-
-    # smfh dependencies
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    # firefox nightly builds
+    firefox-nightly = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # claude code latest
