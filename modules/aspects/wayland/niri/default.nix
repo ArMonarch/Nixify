@@ -39,7 +39,9 @@
         default = ["gtk"];
       };
       niri = {
-        default = "gnome";
+        # 26.05's upstream niri module also defines this ("gnome;gtk"), so
+        # force our explicit value to win.
+        default = lib.mkForce "gnome";
         "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
         "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
       };

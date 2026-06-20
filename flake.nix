@@ -3,8 +3,8 @@
   description = "My vastly overengineered monorepo for everything NixOS";
 
   inputs = {
-    # NixOS official source, using the nixos-25.11 branch
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    # NixOS official source, using the nixos-26.05 branch
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     # NixOS official source, using the nixos-unstable branch
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -23,10 +23,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # my neovim with wrapped configuration
+    # my neovim with wrapped configuration.
+    # NOTE: intentionally does NOT follow the system nixpkgs. On nixos-26.05
+    # neovim-unwrapped pulls `replace` (lib.licenses.unfree) as a build input,
+    # and nixvim builds its own pkgs without allowUnfree, so following our
+    # nixpkgs breaks evaluation. Letting nixvim use its own pinned nixpkgs
+    # (nixos-25.11, where this build works) avoids the failure.
     nixvim = {
       url = "github:ArMonarch/Nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # nixfetch: fetch util wirtten in odin lang
