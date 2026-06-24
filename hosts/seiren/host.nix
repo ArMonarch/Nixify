@@ -50,5 +50,5 @@
   hardware.enableRedistributableFirmware = true;
 
   time.timeZone = "Asia/Kathmandu";
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }
