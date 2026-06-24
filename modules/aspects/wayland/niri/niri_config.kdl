@@ -199,6 +199,12 @@ window-rule {
   open-floating true
 }
 
+// Always open any Lily-engine app (app-id "com.lily.<app>") as floating.
+window-rule {
+  match app-id=r#"^com\.lily\."#
+  open-floating true
+}
+
 // make all firefox take 0.8 space on start
 window-rule {
   match app-id=r#"firefox"#
@@ -464,6 +470,9 @@ binds {
 
   // Move the focused window between the floating and the tiling layout.
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+
+  // Toggle whether the focused window is floating.
+  Mod+Return { toggle-window-floating; }
 
   // Toggle tabbed column display mode.
   // Windows in this column will appear as vertical tabs,
