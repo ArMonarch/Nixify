@@ -9,6 +9,11 @@
   ...
 }: let
   cfg = config.nixify.aspect.programs.ghostty;
+
+  # the nixfetch aspect may not be imported on this host, in which case its
+  # option is undeclared and the fallback applies
+  nixfetch = config.nixify.aspect.programs.nixfetch.enabled or false;
+
   keyValueSettings = {
     listsAsDuplicateKeys = true;
     mkKeyValue = lib.generators.mkKeyValueDefault {} " = ";
@@ -67,7 +72,7 @@ in {
       nixify.aspect.programs.ghostty.settings = lib.modules.mkMerge [
         {
           # Theme
-          theme = "TokyoNight Night";
+          theme = "Rose Pine";
 
           # Window Padding
           window-padding-x = 0;
@@ -87,6 +92,7 @@ in {
           window-theme = "system";
 
           # shell integration features
+          shell-integration = "detect";
           shell-integration-features = "no-cursor, title, ssh-terminfo, ssh-env";
 
           # Cursor Customization
@@ -122,6 +128,12 @@ in {
             "ctrl+shift+v=paste_from_clipboard"
           ];
         }
+
+        # run nixfetch first, then hand off to the interactive shell. `command`
+        # applies to every surface, matching the old interactiveShellInit hook
+        (lib.modules.mkIf nixfetch {
+          command = "fish --init-command=nixfetch";
+        })
 
         # Configure the font family for ghostty
         (lib.modules.mkIf (cfg.font == "jetbrains") {
