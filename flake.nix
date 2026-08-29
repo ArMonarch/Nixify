@@ -5,6 +5,7 @@
   inputs = {
     # NixOS official source, using the nixos-26.05 branch
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+
     # NixOS official source, using the nixos-unstable branch
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -56,6 +57,12 @@
     # claude code latest
     claude-code = {
       url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # noctalia desktop shell
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
