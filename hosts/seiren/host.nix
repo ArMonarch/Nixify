@@ -11,12 +11,6 @@
   ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 3000;
-      to = 9000;
-    }
-  ];
 
   # tweak nixify's ghostty defaults for this host
   nixify.aspect.programs.ghostty.font = "jetbrains";
