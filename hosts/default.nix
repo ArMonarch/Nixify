@@ -24,7 +24,7 @@
   in
     concatLists [
       (singleton ./${host}/host.nix)
-      (builtins.map normalize aspects)
+      (map normalize aspects)
       extraModules
     ];
 in {
@@ -94,7 +94,7 @@ in {
           "nix/settings"
           "nixpkgs"
           "programs/common"
-          "programs/firefox"
+          "programs/firefox/nightly"
           "programs/fish"
           "programs/ghostty"
           "programs/nixfetch"
