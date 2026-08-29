@@ -24,6 +24,7 @@
 
     packages =
       [
+        pkgs.bashmount
         pkgs.lazygit
         pkgs.rose-pine-cursor
         pkgs.scrcpy
