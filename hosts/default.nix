@@ -101,6 +101,7 @@ in {
           "programs/obs-studio"
           "programs/protonvpn"
           "programs/rmpc"
+          "programs/zed"
           "services/bluetooth"
           "services/mpd"
           "services/pipewire"

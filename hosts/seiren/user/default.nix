@@ -32,7 +32,6 @@
         pkgs.nyaa
         pkgs.qbittorrent
         pkgs.vlc
-        pkgs.zed-editor
       ]
       ++ [
         inputs'.nixvim.packages.nixvim
