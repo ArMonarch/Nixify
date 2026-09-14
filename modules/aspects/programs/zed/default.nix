@@ -11,6 +11,20 @@
   cfg = config.nixify.aspect.programs.zed;
 
   json = pkgs.formats.json {};
+
+  # Spawned from keymap.json, which passes `reveal_target = "center"` so the
+  # task takes over the editor pane instead of the terminal dock. Finding and
+  # grepping are zed's own pickers, so lazygit is the only thing left that
+  # actually wants a terminal. It comes from the host package set.
+  tasks = [
+    {
+      label = "lazygit";
+      command = "lazygit";
+      hide = "always";
+      allow_concurrent_runs = false;
+      use_new_terminal = true;
+    }
+  ];
 in {
   options.nixify.aspect.programs.zed = {
     systemWide = lib.options.mkOption {
@@ -75,10 +89,16 @@ in {
         show_whitespaces = "none";
         cli_default_open_behavior = "new_window";
 
-        # every binding is ours, `None` drops zed's own base layer entirely
-        # and leaves only vim mode plus what keymap.json declares
         vim_mode = true;
-        base_keymap = "None";
+        base_keymap = "Atom";
+
+        # which-key, the leader groups above are useless without the hint
+        # popup. 1000ms is the upstream default, which is a long wait when
+        # you already know the chord
+        which_key = {
+          enabled = true;
+          delay_ms = 300;
+        };
 
         # no model ever gets to see this editor
         disable_ai = true;
@@ -90,50 +110,59 @@ in {
         enable_language_server = true;
         inlay_hints.enabled = true;
 
+        # Formatting. zed already formats on save by default, but under the
+        # default `formatter = "auto"` it reaches for prettier whenever a
+        # project carries one and only falls back to the server. Every
+        # language below is served by an lsp, so the server is the formatter,
+        # and anything that needs something else says so in `languages`.
+        format_on_save = "on";
+        formatter = "language_server";
+        remove_trailing_whitespace_on_save = true;
+        ensure_final_newline_on_save = false;
+
         # Pin every server to the system binary. Zed already prefers one found
         # on $PATH, but a server it downloaded itself would not run on nixos,
         # so this states the contract: servers come from the flake, never from
         # a runtime fetch.
-        lsp =
-          lib.attrsets.genAttrs [
-            # shipped with zed
-            "rust-analyzer"
-            "clangd"
-            "gopls"
-            "json-language-server"
-            "package-version-server"
-            "yaml-language-server"
-            "vscode-css-language-server"
-            "tailwindcss-language-server"
-            "vtsls"
-            "typescript-language-server"
-            "eslint"
-            "basedpyright"
-            "pyright"
-            "pylsp"
-            "ruff"
-            "ty"
+        lsp = {
+          # shipped with zed
+          rust-analyzer.binary.ignore_system_version = false;
+          clangd.binary.ignore_system_version = false;
+          gopls.binary.ignore_system_version = false;
+          json-language-server.binary.ignore_system_version = false;
+          package-version-server.binary.ignore_system_version = false;
+          yaml-language-server.binary.ignore_system_version = false;
+          vscode-css-language-server.binary.ignore_system_version = false;
+          tailwindcss-language-server.binary.ignore_system_version = false;
+          vtsls.binary.ignore_system_version = false;
+          typescript-language-server.binary.ignore_system_version = false;
+          eslint.binary.ignore_system_version = false;
+          basedpyright.binary.ignore_system_version = false;
+          pyright.binary.ignore_system_version = false;
+          pylsp.binary.ignore_system_version = false;
+          ruff.binary.ignore_system_version = false;
+          ty.binary.ignore_system_version = false;
 
-            # contributed by the extensions below
-            "vscode-html-language-server"
-            "ols"
-            "slangd"
-            "zls"
-          ]
-          (_: {binary.ignore_system_version = false;});
+          # contributed by the extensions below
+          vscode-html-language-server.binary.ignore_system_version = false;
+          ols.binary.ignore_system_version = false;
+          slangd.binary.ignore_system_version = false;
+        };
 
         languages = {
-          "Rust".format_on_save = "on";
-
           # clangd is intentionally disabled, the projects here use their own
-          # tooling and the bundled server fights with it
+          # tooling and the bundled server fights with it. No server means no
+          # formatter either, so save has to leave these buffers alone rather
+          # than complain on every write.
           "C++" = {
             enable_language_server = false;
             completions.lsp = false;
+            format_on_save = "off";
           };
           "C" = {
             enable_language_server = false;
             completions.lsp = false;
+            format_on_save = "off";
           };
         };
 
@@ -145,7 +174,6 @@ in {
           odin = true;
           slang = true;
           toml = true;
-          zig = true;
         };
 
         ###############################################################
@@ -159,7 +187,6 @@ in {
         project_panel = {
           dock = "right";
           git_status = true;
-          folder_icons = false;
           file_icons = true;
           hide_gitignore = false;
         };
@@ -201,86 +228,66 @@ in {
     # defines the default key bindings for the zed editor
     {
       nixify.aspect.programs.zed.keymap = [
-        # `VimControl` is zed's own predicate for "vim bindings apply here",
-        # it covers normal, visual and operator pending mode in one context
-        {
-          context = "VimControl && !menu";
-          bindings = {
-            h = "vim::Left";
-            j = "vim::Down";
-            k = "vim::Up";
-            l = "vim::Right";
-
-            left = "vim::Left";
-            down = "vim::Down";
-            up = "vim::Up";
-            right = "vim::Right";
-
-            # buffer search, `n` and `shift-n` walk the matches it leaves behind
-            "/" = "vim::Search";
-            "?" = ["vim::Search" {backwards = true;}];
-            n = "vim::MoveToNextMatch";
-            "shift-n" = "vim::MoveToPreviousMatch";
-
-            # visual selection, charwise, linewise and blockwise
-            v = "vim::ToggleVisual";
-            "shift-v" = "vim::ToggleVisualLine";
-            "ctrl-v" = "vim::ToggleVisualBlock";
-          };
-        }
-
-        # window movement. `ctrl-w` on its own is cleared so it can open a
-        # chord instead of deleting the previous word, which is what zed's own
-        # vim keymap does here. the wider context reaches panes that are not an
-        # editor, the project panel and terminal among them
-        {
-          context = "VimControl && !menu || !Editor && !Terminal";
-          bindings = {
-            "ctrl-w" = null;
-            "ctrl-w h" = "workspace::ActivatePaneLeft";
-            "ctrl-w j" = "workspace::ActivatePaneDown";
-            "ctrl-w k" = "workspace::ActivatePaneUp";
-            "ctrl-w l" = "workspace::ActivatePaneRight";
-          };
-        }
-
-        # Telescope style pickers. Zed has no telescope extension, but it ships
-        # the same set of fuzzy pickers natively, so these are only leader keys
-        # onto actions that already exist. `f g` is the live grep equivalent,
-        # it opens the project wide search in a multibuffer.
+        # Leader groups follow the nvim config in ../NixVim so the muscle
+        # memory carries over. Anything vim.json already binds the same way,
+        # `gd` `gr` `K` `]d` `[d` `shift-h` `shift-l` and friends, is left to
+        # the base keymap rather than repeated here.
         {
           context = "vim_mode == normal";
           bindings = {
+            # zed's own pickers throughout. the file finder is already fuzzy
+            # and opens without a terminal in the way, and `DeploySearch` is
+            # the project wide grep, it lands its hits in a multibuffer
             "space space" = "file_finder::Toggle";
-            ":" = "command_palette::Toggle";
-
             "space f f" = "file_finder::Toggle";
+
+            # grep, on both the nvim spellings
+            "space /" = "pane::DeploySearch";
             "space f g" = "pane::DeploySearch";
+
             "space f b" = "tab_switcher::Toggle";
             "space f r" = "projects::OpenRecent";
             "space f s" = "outline::Toggle";
             "space f w" = "project_symbols::Toggle";
             "space f d" = "diagnostics::Deploy";
             "space f c" = "command_palette::Toggle";
+
+            # code. rename and code actions also live on `g r n` and `g r a`
+            # in the vim layer, these are the leader spellings
+            "space c r" = "editor::Rename";
+            "space c a" = "editor::ToggleCodeActions";
+            "space c d" = "editor::Hover";
+
+            # git
+            "space g g" = [
+              "task::Spawn"
+              {
+                task_name = "lazygit";
+                reveal_target = "center";
+              }
+            ];
+            "space g b" = "branches::OpenRecent";
+            "space g s" = "git_panel::ToggleFocus";
+
+            # panels and buffers
+            "space e" = "project_panel::ToggleFocus";
+            "space t t" = "terminal_panel::Toggle";
+            "space b d" = "pane::CloseActiveItem";
+            "space q q" = "zed::Quit";
+
+            # toggles
+            "space u h" = "editor::ToggleInlayHints";
+            "space u w" = "editor::ToggleSoftWrap";
           };
         }
 
-        # the search bar is a pane of its own, enter accepts the query and
-        # escape hands the buffer back
+        # line moving. zed already has this on alt-up and alt-down, these are
+        # the nvim spellings, in insert mode too
         {
-          context = "BufferSearchBar && !in_replace";
+          context = "Editor";
           bindings = {
-            enter = "vim::SearchSubmit";
-            escape = "buffer_search::Dismiss";
-          };
-        }
-
-        # saving is a workspace level action, it has to sit outside the vim
-        # contexts to also catch panes that are not an editor
-        {
-          context = "Workspace";
-          bindings = {
-            "ctrl-s" = "workspace::Save";
+            "alt-j" = "editor::MoveLineDown";
+            "alt-k" = "editor::MoveLineUp";
           };
         }
       ];
@@ -299,6 +306,11 @@ in {
         "zed/keymap.json" = {
           type = "copy";
           source = json.generate "keymap.json" cfg.keymap;
+        };
+
+        "zed/tasks.json" = {
+          type = "copy";
+          source = json.generate "tasks.json" tasks;
         };
       };
     }
