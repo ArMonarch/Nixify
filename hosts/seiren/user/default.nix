@@ -5,6 +5,9 @@
   pkgs,
   ...
 }: {
+  # set defaule EDITOR to nvim
+  environment.variables = {EDITOR = "nvim";};
+
   programs = {
     nix-ld.enable = true;
     nix-ld.libraries = with pkgs; [
