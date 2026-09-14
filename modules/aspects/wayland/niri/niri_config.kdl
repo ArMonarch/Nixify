@@ -73,7 +73,7 @@ output "HDMI-A-2" {
 
   transform "normal"
 
-  position x=0 y=-1080
+  position x=1920 y=0
 
   // define hot-corners points
   hot-corners {
@@ -205,16 +205,45 @@ window-rule {
   open-floating true
 }
 
-// make all firefox take 0.8 space on start
+// Always open any lyleen-engine app (app-id "com.lily.<app>") as floating.
+window-rule {
+  match app-id=r#"^com\.lyleen\."#
+  open-floating true
+}
+
+// make all firefox take 0.9 space on start
 window-rule {
   match app-id=r#"firefox"#
-  default-column-width { proportion 0.8; }
+  default-column-width { proportion 0.9; }
+}
+
+// make all google chrome take 0.9 space on start
+window-rule {
+  match app-id=r#"google-chrome"#
+  default-column-width { proportion 0.9; }
 }
 
 // make all ghostty terminal take 0.9 space
 window-rule {
   match app-id=r#"ghostty"#
   default-column-width { proportion 0.9; }
+}
+
+// make all zed editor windows take 0.9 space
+window-rule {
+  match app-id=r#"^dev\.zed\.Zed$"#
+  default-column-width { proportion 0.9; }
+}
+
+// Open the qBittorrent torrent/file selector dialogs as floating with a fixed
+// height. Their title is the torrent name, so match every qBittorrent window
+// except the main one, whose title is "qBittorrent v<version>".
+window-rule {
+  match app-id=r#"^org\.qbittorrent\.qBittorrent$"#
+  exclude title=r#"^qBittorrent v"#
+
+  open-floating true
+  default-window-height { fixed 640; }
 }
 
 // Example: block out two password managers from screen capture.
@@ -472,7 +501,7 @@ binds {
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
   // Toggle whether the focused window is floating.
-  Mod+Return { toggle-window-floating; }
+  F12 { toggle-window-floating; }
 
   // Toggle tabbed column display mode.
   // Windows in this column will appear as vertical tabs,
