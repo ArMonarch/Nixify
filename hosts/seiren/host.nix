@@ -13,7 +13,7 @@
   networking.firewall.enable = true;
 
   # tweak nixify's ghostty defaults for this host
-  nixify.aspect.programs.ghostty.font = "jetbrains";
+  nixify.aspect.programs.ghostty.font = "iosevka";
 
   # folke tokyonight night scheme
   colorScheme = {
