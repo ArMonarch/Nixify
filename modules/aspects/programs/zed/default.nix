@@ -62,7 +62,7 @@ in {
     )
 
     {
-      fonts.packages = [pkgs.nerd-fonts.jetbrains-mono];
+      fonts.packages = [pkgs.nerd-fonts.iosevka];
     }
 
     # defines the default configuration for the zed editor
@@ -74,7 +74,7 @@ in {
         theme = "Maple Dark";
         icon_theme = "Zed (Default)";
 
-        buffer_font_family = "JetBrainsMono Nerd Font Propo";
+        buffer_font_family = "Iosevka Nerd Font Mono";
         buffer_font_size = 16.0;
         buffer_line_height = "comfortable";
         ui_font_size = 16.0;
