@@ -110,6 +110,16 @@ in {
         enable_language_server = true;
         inlay_hints.enabled = true;
 
+        # Signature help, the parameter list of the call the cursor sits
+        # inside. Both default to off upstream. The first pops it up on its
+        # own whenever the cursor is between parentheses, the second brings it
+        # back after accepting a completion or typing an opening bracket,
+        # which is the moment the arguments are about to be typed. `ctrl-s` in
+        # insert mode asks for it by hand, `ctrl-n` and `ctrl-p` walk
+        # overloads. It follows `hover_popover_delay`, 300ms by default.
+        auto_signature_help = true;
+        show_signature_help_after_edits = true;
+
         # Formatting. zed already formats on save by default, but under the
         # default `formatter = "auto"` it reaches for prettier whenever a
         # project carries one and only falls back to the server. Every
