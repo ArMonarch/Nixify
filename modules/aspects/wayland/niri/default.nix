@@ -34,16 +34,14 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ]);
+    # gnome fronts every interface, gtk only fills the ones gnome lacks
+    # (Access, Notification). Forced because 26.05's upstream niri module
+    # defines its own defaults, including FileChooser = gtk.
     config = {
-      common = {
-        default = ["gtk"];
-      };
+      common.default = ["gnome" "gtk"];
       niri = {
-        # 26.05's upstream niri module also defines this ("gnome;gtk"), so
-        # force our explicit value to win.
-        default = lib.mkForce "gnome";
-        "org.freedesktop.impl.portal.ScreenCast" = ["gnome"];
-        "org.freedesktop.impl.portal.Screenshot" = ["gnome"];
+        default = lib.mkForce ["gnome" "gtk"];
+        "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["gnome"];
       };
     };
   };

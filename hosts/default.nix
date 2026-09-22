@@ -95,7 +95,6 @@ in {
           "nixpkgs"
           "programs/chrome"
           "programs/common"
-          "programs/cosmic-files"
           "programs/firefox/nightly"
           "programs/fish"
           "programs/ghostty"
