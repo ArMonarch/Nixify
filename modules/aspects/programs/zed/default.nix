@@ -12,10 +12,8 @@
 
   json = pkgs.formats.json {};
 
-  # Spawned from keymap.json, which passes `reveal_target = "center"` so the
-  # task takes over the editor pane instead of the terminal dock. Finding and
-  # grepping are zed's own pickers, so lazygit is the only thing left that
-  # actually wants a terminal. It comes from the host package set.
+  # Spawned from keymap.json with `reveal_target = "center"` so lazygit takes
+  # the editor pane. The binary comes from the host package set.
   tasks = [
     {
       label = "lazygit";
@@ -92,9 +90,8 @@ in {
         vim_mode = true;
         base_keymap = "Atom";
 
-        # which-key, the leader groups above are useless without the hint
-        # popup. 1000ms is the upstream default, which is a long wait when
-        # you already know the chord
+        # The leader groups below need the hint popup; 1000ms upstream default
+        # is a long wait once the chords are known.
         which_key = {
           enabled = true;
           delay_ms = 300;
@@ -110,30 +107,20 @@ in {
         enable_language_server = true;
         inlay_hints.enabled = true;
 
-        # Signature help, the parameter list of the call the cursor sits
-        # inside. Both default to off upstream. The first pops it up on its
-        # own whenever the cursor is between parentheses, the second brings it
-        # back after accepting a completion or typing an opening bracket,
-        # which is the moment the arguments are about to be typed. `ctrl-s` in
-        # insert mode asks for it by hand, `ctrl-n` and `ctrl-p` walk
-        # overloads. It follows `hover_popover_delay`, 300ms by default.
-        auto_signature_help = true;
+        # Signature help after completions and opening brackets only, the
+        # moment arguments get typed. `ctrl-s` in insert mode asks by hand.
+        auto_signature_help = false;
         show_signature_help_after_edits = true;
 
-        # Formatting. zed already formats on save by default, but under the
-        # default `formatter = "auto"` it reaches for prettier whenever a
-        # project carries one and only falls back to the server. Every
-        # language below is served by an lsp, so the server is the formatter,
-        # and anything that needs something else says so in `languages`.
+        # The default `formatter = "auto"` prefers prettier when a project
+        # carries one; the server is the formatter here, always.
         format_on_save = "on";
         formatter = "language_server";
         remove_trailing_whitespace_on_save = true;
         ensure_final_newline_on_save = false;
 
-        # Pin every server to the system binary. Zed already prefers one found
-        # on $PATH, but a server it downloaded itself would not run on nixos,
-        # so this states the contract: servers come from the flake, never from
-        # a runtime fetch.
+        # A server zed downloads itself would not run on nixos: every server
+        # comes from the flake, never from a runtime fetch.
         lsp = {
           # shipped with zed
           rust-analyzer.binary.ignore_system_version = false;
@@ -160,10 +147,8 @@ in {
         };
 
         languages = {
-          # clangd is intentionally disabled, the projects here use their own
-          # tooling and the bundled server fights with it. No server means no
-          # formatter either, so save has to leave these buffers alone rather
-          # than complain on every write.
+          # C/C++ projects here run their own tooling; clangd fights it. No
+          # server means no formatter, so save must leave the buffer alone.
           "C++" = {
             enable_language_server = false;
             completions.lsp = false;
@@ -176,9 +161,7 @@ in {
           };
         };
 
-        # Grammars for the languages zed does not bundle. Rust, C, C++, JSON,
-        # JS/TS and YAML are built in and need no entry here, and TOML is a
-        # grammar only extension, it carries no language server.
+        # Grammars zed does not bundle. TOML is grammar-only, no server.
         auto_install_extensions = {
           html = true;
           odin = true;
@@ -238,16 +221,16 @@ in {
     # defines the default key bindings for the zed editor
     {
       nixify.aspect.programs.zed.keymap = [
-        # Leader groups follow the nvim config in ../NixVim so the muscle
-        # memory carries over. Anything vim.json already binds the same way,
-        # `gd` `gr` `K` `]d` `[d` `shift-h` `shift-l` and friends, is left to
-        # the base keymap rather than repeated here.
+        # Leader groups follow the nvim config in ../NixVim. Anything vim.json
+        # already binds the same way is left to the base keymap.
         {
           context = "vim_mode == normal";
           bindings = {
-            # zed's own pickers throughout. the file finder is already fuzzy
-            # and opens without a terminal in the way, and `DeploySearch` is
-            # the project wide grep, it lands its hits in a multibuffer
+            # tab hopping, pinned so upstream changes cannot move it
+            "shift-h" = "pane::ActivatePreviousItem";
+            "shift-l" = "pane::ActivateNextItem";
+
+            # zed's own pickers; `DeploySearch` is the project-wide grep
             "space space" = "file_finder::Toggle";
             "space f f" = "file_finder::Toggle";
 
@@ -262,8 +245,7 @@ in {
             "space f d" = "diagnostics::Deploy";
             "space f c" = "command_palette::Toggle";
 
-            # code. rename and code actions also live on `g r n` and `g r a`
-            # in the vim layer, these are the leader spellings
+            # code, the leader spellings; `g r n`/`g r a` still work
             "space c r" = "editor::Rename";
             "space c a" = "editor::ToggleCodeActions";
             "space c d" = "editor::Hover";
@@ -291,13 +273,59 @@ in {
           };
         }
 
-        # line moving. zed already has this on alt-up and alt-down, these are
-        # the nvim spellings, in insert mode too
+        # Incremental selection, nvim's `gnn`. Scoping to normal and visual
+        # leaves `ctrl-space` completions in insert mode untouched.
+        {
+          context = "vim_mode == normal || vim_mode == visual";
+          bindings = {
+            "ctrl-space" = "vim::SelectLargerSyntaxNode";
+          };
+        }
+
+        # Scoped to visual so backspace stays `vim::WrappingLeft` in normal.
+        {
+          context = "vim_mode == visual";
+          bindings = {
+            backspace = "vim::SelectSmallerSyntaxNode";
+          };
+        }
+
+        # line moving, the nvim spellings of alt-up/alt-down
         {
           context = "Editor";
           bindings = {
             "alt-j" = "editor::MoveLineDown";
             "alt-k" = "editor::MoveLineUp";
+          };
+        }
+
+        # Save and tab switching, both platform spellings pinned so one keymap
+        # behaves the same everywhere. `9` is the last tab, matching upstream.
+        {
+          context = "Workspace";
+          bindings = {
+            "ctrl-s" = "workspace::Save";
+            "cmd-s" = "workspace::Save";
+
+            "alt-1" = ["pane::ActivateItem" 0];
+            "alt-2" = ["pane::ActivateItem" 1];
+            "alt-3" = ["pane::ActivateItem" 2];
+            "alt-4" = ["pane::ActivateItem" 3];
+            "alt-5" = ["pane::ActivateItem" 4];
+            "alt-6" = ["pane::ActivateItem" 5];
+            "alt-7" = ["pane::ActivateItem" 6];
+            "alt-8" = ["pane::ActivateItem" 7];
+            "alt-9" = "pane::ActivateLastItem";
+
+            "cmd-1" = ["pane::ActivateItem" 0];
+            "cmd-2" = ["pane::ActivateItem" 1];
+            "cmd-3" = ["pane::ActivateItem" 2];
+            "cmd-4" = ["pane::ActivateItem" 3];
+            "cmd-5" = ["pane::ActivateItem" 4];
+            "cmd-6" = ["pane::ActivateItem" 5];
+            "cmd-7" = ["pane::ActivateItem" 6];
+            "cmd-8" = ["pane::ActivateItem" 7];
+            "cmd-9" = "pane::ActivateLastItem";
           };
         }
       ];
@@ -311,8 +339,7 @@ in {
           generator = json.generate "settings.json";
         };
 
-        # hjem only accepts attribute sets for `value`, and a zed keymap is a
-        # top level list, so the file is generated up front instead
+        # hjem's `value` only takes attribute sets; a keymap is a list
         "zed/keymap.json" = {
           type = "copy";
           source = json.generate "keymap.json" cfg.keymap;
