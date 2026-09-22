@@ -18,10 +18,7 @@
     podman = {
       enable = true;
 
-      # Make Podman backwards compatible with Docker socket interface.
-      # Certain interface elements will be different, but unless any
-      # of said values are hardcoded, it should not pose a problem
-      # for us.
+      # Docker socket compatibility; fine unless a socket path is hardcoded.
       dockerCompat = true;
       dockerSocket.enable = true;
 

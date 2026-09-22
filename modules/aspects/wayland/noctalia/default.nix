@@ -1,10 +1,6 @@
 ###################################################
-# Noctalia Wayland desktop shell for NixOS
-#
-# Installs noctalia from its upstream flake input
-# (github:noctalia-dev/noctalia), which pins the build
-# and carries its own runtime deps, and renders
-# `$XDG_CONFIG_HOME/noctalia/config.toml` from nix.
+# Noctalia Wayland desktop shell for NixOS,
+# installed from its upstream flake input.
 ###################################################
 {
   lib,
@@ -37,33 +33,28 @@ in {
       environment.systemPackages = [cfg.package];
     }
 
-    # defines the default configuration for the noctalia desktop shell.
-    #
-    # A single bottom "dock" bar that auto-hides and carries the taskbar in the
-    # middle with the clock at the end. There is deliberately no top bar, so
-    # none of the usual status widgets (tray, network, battery, session, ...)
-    # are placed anywhere.
+    # Default config: one auto-hiding bottom dock bar, taskbar in the middle,
+    # clock at the end. Deliberately no top bar and no status widgets.
     {
       nixify.aspect.wayland.noctalia.settings = {
-        # A bar, not the [dock] component: only bars host widgets, so only a bar
-        # can put a clock next to the app icons.
+        # a bar, not the [dock] component: only bars host widgets
         bar.dock = {
           position = "bottom";
           thickness = 52;
           background_opacity = 0.88;
           radius = 18;
-          margin_ends = 420; # inset from both ends — this is what makes it dock-width
-          margin_edge = 8; # lifts it off the screen edge so it floats
+          margin_ends = 420; # the inset is what makes it dock-width
+          margin_edge = 8; # floats it off the screen edge
           padding = 12;
           widget_spacing = 12;
           shadow = true;
 
-          auto_hide = true; # slides out when the pointer leaves; reveals on edge approach
-          show_on_workspace_switch = true; # brief peek when the active workspace changes
-          reserve_space = false; # an auto-hiding dock shouldn't hold an exclusive zone
+          auto_hide = true;
+          show_on_workspace_switch = true; # brief peek on workspace change
+          reserve_space = false; # an auto-hiding dock holds no exclusive zone
           layer = "top";
 
-          # smart_auto_hide = true; # alternative: visible on empty workspaces, hidden once windows appear
+          # smart_auto_hide = true; # alternative: hide only once windows appear
 
           center = ["dock_apps"];
           end = ["dock_clock"];
@@ -85,15 +76,14 @@ in {
           tooltip_format = "{:%A %d %B %Y}";
         };
 
-        # The built-in [dock] stays off — it auto-hides but cannot host a clock.
+        # the built-in [dock] cannot host a clock
         dock.enabled = false;
       };
     }
 
     {
-      # a plain symlink is safe here: noctalia treats config.toml as read-only
-      # and persists anything changed from its settings GUI to
-      # `$XDG_STATE_HOME/noctalia/settings.toml` instead.
+      # A symlink is safe: noctalia treats config.toml as read-only and
+      # persists GUI changes to `$XDG_STATE_HOME/noctalia/settings.toml`.
       hjem.users.${username}.xdg.config.files = {
         "noctalia/config.toml" = {
           type = "symlink";

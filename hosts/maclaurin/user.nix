@@ -22,7 +22,6 @@ in {
     ];
   };
 
-  # hjem user home management setup
   hjem.users.${username} = {
     enable = true;
     clobberFiles = true;
@@ -30,29 +29,21 @@ in {
     imports = [];
 
     xdg.config.files = {
-      # git config
       "git/config" = {
         generator = toGitINI;
         value = {
           user.name = gitUsername;
           user.email = gitEmail;
 
-          push.default = "simple"; # Match modern push behavior
-          core.askPass = ""; # needs to be empty to use terminal for ask pass
+          push.default = "simple";
+          core.askPass = ""; # empty so git asks in the terminal
 
-          # Cache timeout set to 6 Hrs
-          # 12 hrs = 43,200
-          # 6 hrs = 21,600
-          # 2 hrs = 7,200
-          # credential.helper = "cache --timeout=21600";
+          # credential.helper = "cache --timeout=21600"; # alternative, 6 hrs
           credential.helper = "store";
-          # Set default new branches to 'master'
           init.defaultBranch = "master";
-          # FOSS-friendly settings
-          log.decorate = "full"; # Show branch/tag info in git log
-          log.date = "iso"; # ISO 8601 date format
-          # Conflict resolution style for readable diffs
-          merge.conflictStyle = "diff3";
+          log.decorate = "full"; # branch/tag info in git log
+          log.date = "iso";
+          merge.conflictStyle = "diff3"; # readable three-way conflicts
         };
       };
     };

@@ -7,7 +7,7 @@
   ...
 }: {
   virtualisation = {
-    # Registries to search for images on `podman pull`
+    # Registries to search for images on pull.
     containers.registries.search = [
       "docker.io"
       "quay.io"
@@ -19,10 +19,7 @@
     };
   };
 
-  # set the distrobox container manager environment variable to docker
-  # even if distrobox is not installed
-  # later move this to dostrobox and add checks if either
-  # docker or podman is enabled if distrobox is enabled
+  # TODO: move to the distrobox aspect and assert docker or podman is enabled.
   environment.sessionVariables = {
     DISTROBOX_CONTAINER_MANAGER = "docker";
   };

@@ -1,12 +1,7 @@
 ###################################################
-# Ubiquiti WiFiman Desktop for NixOS
-#
-# Installs the WiFiman Desktop GUI (packaged from the
-# upstream .deb in parts/pkgs/wifiman-desktop) and runs
-# its privileged helper daemon `wifiman-desktopd` as a
-# systemd service. The daemon performs the network
-# scanning / device discovery and manages the Teleport
-# WireGuard tunnel; the GUI is non-functional without it.
+# Ubiquiti WiFiman Desktop for NixOS. The privileged
+# daemon `wifiman-desktopd` runs as a systemd
+# service; the GUI is non-functional without it.
 ###################################################
 {
   self',
