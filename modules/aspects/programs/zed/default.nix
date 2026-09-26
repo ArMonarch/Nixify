@@ -70,7 +70,7 @@ in {
         # Appearance
         ###############################################################
         theme = "Maple Dark";
-        icon_theme = "Zed (Default)";
+        icon_theme = "Catppuccin Latte";
 
         buffer_font_family = "Iosevka Nerd Font Mono";
         buffer_font_size = 16.0;
@@ -161,12 +161,9 @@ in {
           };
         };
 
-        # Grammars zed does not bundle. TOML is grammar-only, no server.
+        # the icon theme set above
         auto_install_extensions = {
-          html = true;
-          odin = true;
-          slang = true;
-          toml = true;
+          catppuccin-icons = true;
         };
 
         ###############################################################
