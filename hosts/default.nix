@@ -101,6 +101,7 @@ in {
           "programs/nixfetch"
           "programs/obs-studio"
           "programs/rmpc"
+          "programs/rpcs3"
           "programs/zed"
           "services/bluetooth"
           "services/mpd"
