@@ -23,7 +23,7 @@ in {
     ];
 
     environment.variables = {
-      NIXFETCH_IMAGE = "/home/frenzfries/Project/Nixify/modules/aspects/programs/nixfetch/HRYCDoxW0AUnTIZ.jpeg";
+      NIXFETCH_IMAGE = "/home/frenzfries/Project/Nixify/modules/aspects/programs/nixfetch/HRYCDoxW0AUnTIZ.png";
     };
   };
 }
