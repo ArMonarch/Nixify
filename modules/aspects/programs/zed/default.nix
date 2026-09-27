@@ -106,6 +106,10 @@ in {
         ###############################################################
         enable_language_server = true;
         inlay_hints.enabled = true;
+        diagnostics.inline = {
+          enabled = true;
+          max_severity = "error";
+        };
 
         # Signature help after completions and opening brackets only, the
         # moment arguments get typed. `ctrl-s` in insert mode asks by hand.
