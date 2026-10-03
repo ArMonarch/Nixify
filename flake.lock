@@ -192,11 +192,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788020809,
-        "narHash": "sha256-LCTkPo94ZVLv4ayjiOGGNEzLdyvSKcNuj3KPVI4U0As=",
+        "lastModified": 1790872063,
+        "narHash": "sha256-ox9E8WuOSqxRoQ4cFWnohX3AaEDQdBOKD1P02UOZBgE=",
         "owner": "ArMonarch",
         "repo": "nixfetch",
-        "rev": "fbd72875eef7a960b894811f6b64aacbffa187a6",
+        "rev": "75e34de81d38de28d2f618eebba640815c10fd23",
         "type": "github"
       },
       "original": {
@@ -319,11 +319,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1785320045,
-        "narHash": "sha256-sqxTlJbm2zJ65SxEkSJdETO44uRqbaMMuue+2nYoLbc=",
+        "lastModified": 1790493162,
+        "narHash": "sha256-BihbRnJ8ft/AaHHDcpHLKLCmkdwM5Rnop8huyphbLWI=",
         "owner": "ArMonarch",
         "repo": "odin-overlay",
-        "rev": "a54e0fae818226898a7bf9054b68b587848ef297",
+        "rev": "f3b426c2f9f1a22446c7cac44e8288d36bd3c3d0",
         "type": "github"
       },
       "original": {
