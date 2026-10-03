@@ -57,12 +57,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # noctalia desktop shell
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # RAD Debugger source, tracking master. Not followed as a flake: its
     # flake.nix only carries a devShell, so we build it in parts/pkgs/raddbg.
     raddebugger = {

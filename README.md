@@ -39,7 +39,6 @@ Aspects are self-contained, composable configuration modules. Each aspect config
 | nix | `settings` |
 | nixpkgs | default |
 | programs | `common`, `discord/*`, `firefox`, `ghostty`, `obs-studio`, `rmpc` |
-| quickshell | `noctalia-shell` |
 | security | default, `firewall` |
 | services | `bluetooth`, `dbus`, `mpd`, `openssh`, `pipewire`, `power`, `printing`, `pulseaudio` |
 | shell | `fish` |
