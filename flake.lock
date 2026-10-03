@@ -332,6 +332,22 @@
         "type": "github"
       }
     },
+    "raddebugger": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791000529,
+        "narHash": "sha256-dqzMJ3ufHG+SkBc7gODPjU2umEzhvEoDRz0/hy2eAh8=",
+        "owner": "EpicGamesExt",
+        "repo": "raddebugger",
+        "rev": "7da38c5f3bd306fe72a850d88fa2b5db159b1362",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EpicGamesExt",
+        "repo": "raddebugger",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "claude-code": "claude-code",
@@ -343,6 +359,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
         "noctalia": "noctalia",
+        "raddebugger": "raddebugger",
         "systems": "systems_5",
         "wrappers": "wrappers_2"
       }

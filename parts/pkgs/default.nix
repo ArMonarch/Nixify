@@ -14,6 +14,7 @@
     packages = {
       noctalia-shell = pkgs.callPackage ./noctalia-shell/default.nix {};
       wifiman-desktop = pkgs.callPackage ./wifiman-desktop/default.nix {};
+      raddebugger = pkgs.callPackage ./raddbg/default.nix {src = inputs.raddebugger;};
     };
   };
 }

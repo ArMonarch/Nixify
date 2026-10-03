@@ -62,6 +62,13 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # RAD Debugger source, tracking master. Not followed as a flake: its
+    # flake.nix only carries a devShell, so we build it in parts/pkgs/raddbg.
+    raddebugger = {
+      url = "github:EpicGamesExt/raddebugger";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
