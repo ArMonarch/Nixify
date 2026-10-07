@@ -98,7 +98,6 @@ in {
           "programs/firefox"
           "programs/fish"
           "programs/ghostty"
-          "programs/ladybird"
           "programs/nixfetch"
           "programs/raddebugger"
           "programs/obs-studio"

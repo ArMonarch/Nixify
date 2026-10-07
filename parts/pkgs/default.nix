@@ -14,7 +14,6 @@
     packages = {
       wifiman-desktop = pkgs.callPackage ./wifiman-desktop/default.nix {};
       raddebugger = inputs'.nixpkgs-unstable.legacyPackages.callPackage ./raddbg/default.nix {src = inputs.raddebugger;};
-      ladybird = inputs'.nixpkgs-unstable.legacyPackages.callPackage ./ladybird/default.nix {src = inputs.ladybird;};
     };
   };
 }
