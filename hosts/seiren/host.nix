@@ -9,7 +9,7 @@
 
   networking.firewall.enable = true;
 
-  nixify.aspect.programs.ghostty.font = "jetbrains-mono";
+  nixify.aspect.programs.ghostty.font = "jetbrains";
 
   # folke tokyonight night scheme
   colorScheme = {
