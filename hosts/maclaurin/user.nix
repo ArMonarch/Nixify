@@ -2,7 +2,6 @@
   lib,
   pkgs,
   config,
-  inputs',
   username,
   ...
 }: let
@@ -17,9 +16,6 @@ in {
     extraGroups = ["networkmanager" "wheel"];
     home = "/home/${username}";
     shell = pkgs.fish;
-    packages = [
-      inputs'.nixvim.packages.nixvim
-    ];
   };
 
   hjem.users.${username} = {

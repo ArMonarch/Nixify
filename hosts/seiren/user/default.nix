@@ -5,8 +5,8 @@
   pkgs,
   ...
 }: {
-  # set defaule EDITOR to nvim
-  environment.variables = {EDITOR = "nvim";};
+  # zed is the editor everywhere; --wait blocks until the buffer closes
+  environment.variables = {EDITOR = "zeditor --wait";};
 
   programs = {
     nix-ld.enable = true;

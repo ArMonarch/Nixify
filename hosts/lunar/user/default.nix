@@ -35,7 +35,6 @@
         libreoffice-qt-fresh
       ]
       ++ [
-        inputs'.nixvim.packages.nixvim
         inputs'.claude-code.packages.claude-code
       ];
   };
