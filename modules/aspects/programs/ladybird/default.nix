@@ -4,7 +4,7 @@
 # Independent engine (LibWeb/LibJS), still pre-alpha,
 # so it sits beside a daily-driver browser.
 ###################################################
-{inputs', ...}: {
-  # From unstable: the 26.05 snapshot is flagged insecure (CVE-2026-58592).
-  environment.systemPackages = [inputs'.nixpkgs-unstable.legacyPackages.ladybird];
+{self', ...}: {
+  # Built from master in parts/pkgs/ladybird; `nix flake update ladybird` bumps it.
+  environment.systemPackages = [self'.packages.ladybird];
 }

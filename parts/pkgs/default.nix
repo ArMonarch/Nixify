@@ -1,5 +1,9 @@
 {inputs, ...}: {
-  perSystem = {system, ...}: let
+  perSystem = {
+    system,
+    inputs',
+    ...
+  }: let
     pkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
@@ -9,7 +13,8 @@
 
     packages = {
       wifiman-desktop = pkgs.callPackage ./wifiman-desktop/default.nix {};
-      raddebugger = pkgs.callPackage ./raddbg/default.nix {src = inputs.raddebugger;};
+      raddebugger = inputs'.nixpkgs-unstable.legacyPackages.callPackage ./raddbg/default.nix {src = inputs.raddebugger;};
+      ladybird = inputs'.nixpkgs-unstable.legacyPackages.callPackage ./ladybird/default.nix {src = inputs.ladybird;};
     };
   };
 }

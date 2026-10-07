@@ -63,6 +63,13 @@
       url = "github:EpicGamesExt/raddebugger";
       flake = false;
     };
+
+    # Ladybird source, tracking master. Built in parts/pkgs/ladybird on top
+    # of the nixpkgs recipe.
+    ladybird = {
+      url = "github:LadybirdBrowser/ladybird";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {flake-parts, ...}:
