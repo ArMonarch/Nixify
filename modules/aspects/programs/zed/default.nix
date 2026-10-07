@@ -10,6 +10,9 @@
 }: let
   cfg = config.nixify.aspect.programs.zed;
 
+  # Nix language servers the nix extension finds on PATH.
+  packages = [cfg.package pkgs.nil pkgs.nixd];
+
   json = pkgs.formats.json {};
 
   # Spawned from keymap.json with `reveal_target = "center"` so lazygit takes
@@ -49,13 +52,13 @@ in {
   config = lib.mkMerge [
     (
       lib.modules.mkIf (cfg.systemWide) {
-        environment.systemPackages = [cfg.package];
+        environment.systemPackages = packages;
       }
     )
 
     (
       lib.modules.mkIf (!cfg.systemWide) {
-        users.users.${username}.packages = [cfg.package];
+        users.users.${username}.packages = packages;
       }
     )
 
@@ -165,9 +168,10 @@ in {
           };
         };
 
-        # the icon theme set above
+        # the icon theme set above, and nix support backed by nil and nixd
         auto_install_extensions = {
           catppuccin-icons = true;
+          nix = true;
         };
 
         ###############################################################
