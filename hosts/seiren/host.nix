@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   # fs, hardware and user are compulsory per host; every other setting here
   # is a host-specific tweak on an aspect's defaults.
   imports = [
@@ -10,6 +10,9 @@
   networking.firewall.enable = true;
 
   nixify.aspect.programs.ghostty.font = "jetbrains";
+
+  # Ladybird's font fallback lists name these families.
+  fonts.packages = [pkgs.dejavu_fonts pkgs.liberation_ttf];
 
   # folke tokyonight night scheme
   colorScheme = {
