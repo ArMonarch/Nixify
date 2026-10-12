@@ -192,11 +192,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790872063,
-        "narHash": "sha256-ox9E8WuOSqxRoQ4cFWnohX3AaEDQdBOKD1P02UOZBgE=",
+        "lastModified": 1791827849,
+        "narHash": "sha256-zxKD203waElZTKntQqDj/iLlhcm4ApkbBCFcOe/Mbrs=",
         "owner": "ArMonarch",
         "repo": "nixfetch",
-        "rev": "75e34de81d38de28d2f618eebba640815c10fd23",
+        "rev": "98c15fe97e195ee229892a46b9d15e08c92d878c",
         "type": "github"
       },
       "original": {
@@ -299,11 +299,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1790493162,
-        "narHash": "sha256-BihbRnJ8ft/AaHHDcpHLKLCmkdwM5Rnop8huyphbLWI=",
+        "lastModified": 1791480377,
+        "narHash": "sha256-rzqasCxUkLxdmxwScUNu4B6dUanZmiw5QXbagWo+rPU=",
         "owner": "ArMonarch",
         "repo": "odin-overlay",
-        "rev": "f3b426c2f9f1a22446c7cac44e8288d36bd3c3d0",
+        "rev": "1cc5eec70416957a94cea733a7c9d542884be3c8",
         "type": "github"
       },
       "original": {
@@ -315,11 +315,11 @@
     "raddebugger": {
       "flake": false,
       "locked": {
-        "lastModified": 1791000529,
-        "narHash": "sha256-dqzMJ3ufHG+SkBc7gODPjU2umEzhvEoDRz0/hy2eAh8=",
+        "lastModified": 1791824307,
+        "narHash": "sha256-lhIhOYpTif0zMtIXk7WbW7iQ8/naENE5DzyahDed3d8=",
         "owner": "EpicGamesExt",
         "repo": "raddebugger",
-        "rev": "7da38c5f3bd306fe72a850d88fa2b5db159b1362",
+        "rev": "d5cbced499843ad9ef7873240d98dea6c29bbc4c",
         "type": "github"
       },
       "original": {
