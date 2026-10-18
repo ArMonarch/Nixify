@@ -93,6 +93,7 @@ in {
           "localization"
           "nix/settings"
           "nixpkgs"
+          "programs/aseprite"
           "programs/chrome"
           "programs/essentials"
           "programs/firefox"
