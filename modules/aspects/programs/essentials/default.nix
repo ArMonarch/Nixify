@@ -1,5 +1,5 @@
 ###################################################
-# Common command-line utilities and tools for NixOS
+# Essential command-line utilities and tools for NixOS
 ###################################################
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
