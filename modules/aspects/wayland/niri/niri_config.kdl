@@ -180,6 +180,12 @@ animations { }
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 
+// make every window take 0.8 space on start. Must stay the first rule:
+// later rules override it per app.
+window-rule {
+  default-column-width { proportion 0.8; }
+}
+
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 window-rule {
@@ -233,6 +239,12 @@ window-rule {
 window-rule {
   match app-id=r#"^dev\.zed\.Zed$"#
   default-column-width { proportion 0.9; }
+}
+
+// make all scrcpy windows take 0.3 space
+window-rule {
+  match app-id=r#"scrcpy"#
+  default-column-width { proportion 0.3; }
 }
 
 // Open the qBittorrent torrent/file selector dialogs as floating with a fixed
