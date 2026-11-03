@@ -1,9 +1,11 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   inherit (lib.options) mkOption;
-  inherit (lib.types) attrsOf nullOr str;
-in {
+  inherit (lib.types) attrsOf nullOr strMatching;
+in
+{
   options.colorScheme = mkOption {
-    type = nullOr (attrsOf str);
+    type = nullOr (attrsOf (strMatching "[0-9a-fA-F]{6}"));
     default = null;
     example = {
       # Tokyo Night Moon theme

@@ -6,7 +6,6 @@
     curl
     fd
     file
-    htop
     ripgrep
     tldr
     wget
