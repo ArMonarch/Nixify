@@ -100,7 +100,6 @@ in {
           "programs/btop"
           "programs/essentials"
           "programs/firefox"
-          "programs/ladybird"
           "programs/fish"
           "programs/ghostty"
           "programs/nixfetch"
