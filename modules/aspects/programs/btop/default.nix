@@ -62,12 +62,23 @@ in {
       environment.systemPackages = [pkgs.btop];
     }
 
-    # Btop owns btop.conf and rewrites it on exit, so pick "nixify" once in
-    # Options → Color theme; the theme file itself follows every rebuild.
+    # Writable so btop can save on exit; hjem only rewrites it when these keys
+    # change. Btop fills in the rest with defaults.
     (mkIf (config.colorScheme != null) {
-      hjem.users.${username}.xdg.config.files."btop/themes/nixify.theme" = {
-        type = "symlink";
-        source = pkgs.writeText "nixify.theme" theme;
+      hjem.users.${username}.xdg.config.files = {
+        "btop/themes/nixify.theme" = {
+          type = "symlink";
+          source = pkgs.writeText "nixify.theme" theme;
+        };
+        "btop/btop.conf" = {
+          type = "copy";
+          source = pkgs.writeText "btop.conf" ''
+            color_theme = "nixify"
+            proc_sorting = "name"
+          '';
+          permissions = "0644";
+          clobber = true;
+        };
       };
     })
   ];
