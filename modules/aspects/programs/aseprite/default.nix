@@ -29,10 +29,38 @@
         clobber = false;
       })
     ["package.json" "theme.xml" "sheet.png"];
+
+  # macOS-style editing on Super, added next to the Ctrl defaults. "Super" is
+  # aseprite's Linux name for the key (src/ui/shortcut.cpp).
+  keys = pkgs.writeText "user.aseprite-keys" ''
+    <?xml version="1.0" encoding="utf-8"?>
+    <keyboard version="1">
+      <commands>
+        <key command="Copy" shortcut="Super+C" />
+        <key command="Cut" shortcut="Super+X" />
+        <key command="Paste" shortcut="Super+V" />
+        <key command="MaskAll" shortcut="Super+A" />
+        <key command="Undo" shortcut="Super+Z" />
+        <key command="Redo" shortcut="Super+Shift+Z" />
+        <key command="Redo" shortcut="Super+Y" />
+      </commands>
+    </keyboard>
+  '';
 in {
   environment.systemPackages = [pkgs.aseprite];
 
   # Aseprite owns aseprite.ini and rewrites it on exit, so pick the flavour
   # once in Preferences → Theme.
-  hjem.users.${username}.xdg.config.files = lib.listToAttrs (lib.concatMap extension flavours);
+  hjem.users.${username}.xdg.config.files =
+    lib.listToAttrs (lib.concatMap extension flavours)
+    // {
+      # Writable so Edit → Keyboard Shortcuts can save; hjem only rewrites it
+      # when the keys above change.
+      "aseprite/user.aseprite-keys" = {
+        type = "copy";
+        source = keys;
+        permissions = "0644";
+        clobber = true;
+      };
+    };
 }

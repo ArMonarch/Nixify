@@ -126,6 +126,9 @@ in {
 
             "ctrl+shift+c=copy_to_clipboard"
             "ctrl+shift+v=paste_from_clipboard"
+
+            "super+c=copy_to_clipboard"
+            "super+v=paste_from_clipboard"
           ];
         }
 

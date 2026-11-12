@@ -304,6 +304,30 @@ in {
           };
         }
 
+        # macOS-style clipboard on Linux; super reaches zed because niri leaves
+        # Mod+C/V/X/A/Z unbound.
+        {
+          context = "Editor";
+          bindings = {
+            "super-c" = "editor::Copy";
+            "super-x" = "editor::Cut";
+            "super-v" = "editor::Paste";
+            "super-a" = "editor::SelectAll";
+            "super-z" = "editor::Undo";
+            "super-shift-z" = "editor::Redo";
+            "super-y" = "editor::Redo";
+          };
+        }
+
+        # The terminal panel keeps ctrl-c as SIGINT.
+        {
+          context = "Terminal";
+          bindings = {
+            "super-c" = "terminal::Copy";
+            "super-v" = "terminal::Paste";
+          };
+        }
+
         # Save and tab switching, both platform spellings pinned so one keymap
         # behaves the same everywhere. `9` is the last tab, matching upstream.
         {

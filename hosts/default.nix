@@ -91,6 +91,7 @@ in {
           "console/theme"
           "displayManager/greetd/tuigreet-niri"
           "gpu/intel-nvidia"
+          "input/mac-shortcuts"
           "kernel/zen"
           "localization"
           "nix/settings"
