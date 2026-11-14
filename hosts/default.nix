@@ -105,6 +105,7 @@ in {
           "programs/ghostty"
           "programs/nixfetch"
           "programs/raddebugger"
+          "programs/mpv"
           "programs/obs-studio"
           "programs/rmpc"
           "programs/zed"
