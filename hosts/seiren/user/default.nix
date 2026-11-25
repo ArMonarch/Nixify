@@ -8,13 +8,6 @@
   # zed is the editor everywhere; --wait blocks until the buffer closes
   environment.variables = {EDITOR = "zeditor --wait";};
 
-  programs = {
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [
-      libxcrypt-legacy
-    ];
-  };
-
   # user setup
   users.mutableUsers = true;
   users.users.${username} = {

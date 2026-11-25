@@ -8,13 +8,6 @@
   # nixvim below; zed isn't on this host yet
   environment.variables = {EDITOR = "nvim";};
 
-  programs = {
-    nix-ld.enable = true;
-    nix-ld.libraries = with pkgs; [
-      libxcrypt-legacy
-    ];
-  };
-
   # user setup
   users.mutableUsers = true;
   users.users.${username} = {
