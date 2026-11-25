@@ -33,7 +33,7 @@ Aspects are self-contained, composable configuration modules. Each aspect config
 | cpu | `intel` |
 | desktopManager | `gnome`, `plasma` |
 | displayManager | `gdm`, `sddm`, `greetd/tuigreet-niri` |
-| gpu | `intel-nvidia` |
+| gpu | `intel`, `intel-nvidia`, `nvidia`, `vmware` |
 | kernel | `latest`, `zen` |
 | localization | default |
 | nix | `settings` |
@@ -136,6 +136,29 @@ sudo nixos-rebuild switch --flake .#<hostname>
 # Test configuration
 sudo nixos-rebuild test --flake .#<hostname>
 ```
+
+## NixOS VM on macOS (`maclaurin`)
+
+Following [mitchellh/nixos-config](https://github.com/mitchellh/nixos-config): macOS stays the
+host, and the seiren desktop (niri, rose-pine, zed, ghostty, fish) runs as a VMware Fusion
+guest that the repo `Makefile` drives over ssh.
+
+1. In VMware Fusion, create a VM from the NixOS **aarch64** ISO ("Other Linux 6.x kernel 64-bit
+   Arm", 4+ cores, 8+ GB RAM, 100+ GB disk, *Display → Accelerate 3D Graphics* on, NAT network)
+   and install NixOS by hand. `hosts/maclaurin/fs.nix` mounts by label: root `mkfs.ext4 -L NixOS`,
+   EFI `mkfs.fat -F 32 -n Boot`. Swap is a 4 GiB swapfile, so no swap partition.
+2. First switch, inside the VM (flakes aren't on yet in a fresh install):
+   ```bash
+   nix-shell -p git --run "git clone https://github.com/ArMonarch/Nixify.git ~/Nixify"
+   cd ~/Nixify
+   sudo nixos-rebuild boot --flake .#maclaurin --option experimental-features "nix-command flakes"
+   sudo reboot
+   ```
+3. Day to day, push edits from the Mac (`ip a` in the VM for the address; user `frenzfries`,
+   password `initial` until you change it):
+   ```bash
+   make vm/deploy NIXADDR=<ip>   # rsync this repo to /nixify in the VM and switch
+   ```
 
 ## Dependencies
 

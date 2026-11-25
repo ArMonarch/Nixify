@@ -1,47 +1,50 @@
 {
-  lib,
-  pkgs,
+  inputs',
   config,
   username,
+  pkgs,
   ...
-}: let
-  inherit (lib.generators) toGitINI;
-  gitUsername = "ArMonarch";
-  gitEmail = "praffulthapa12@gmail.com";
-in {
-  users.users.frenzfries = {
-    name = username;
-    isNormalUser = true;
-    initialPassword = "initial";
-    extraGroups = ["networkmanager" "wheel"];
-    home = "/home/${username}";
-    shell = pkgs.fish;
+}: {
+  # nixvim below; zed isn't on this host yet
+  environment.variables = {EDITOR = "nvim";};
+
+  programs = {
+    nix-ld.enable = true;
+    nix-ld.libraries = with pkgs; [
+      libxcrypt-legacy
+    ];
   };
 
+  # user setup
+  users.mutableUsers = true;
+  users.users.${username} = {
+    name = username;
+    extraGroups = ["wheel"];
+    initialPassword = "initial";
+    isNormalUser = true;
+    home = "/home/${username}";
+    shell = pkgs.fish;
+
+    packages =
+      [
+        pkgs.gnumake # the repo Makefile, `make switch` inside the VM
+        pkgs.lazygit
+        pkgs.rose-pine-cursor
+      ]
+      ++ [
+        inputs'.nixvim.packages.nixvim
+        inputs'.claude-code.packages.claude-code
+      ];
+  };
+
+  # hjem user home management setup
   hjem.users.${username} = {
     enable = true;
     clobberFiles = true;
     directory = config.users.users.${username}.home;
-    imports = [];
-
-    xdg.config.files = {
-      "git/config" = {
-        generator = toGitINI;
-        value = {
-          user.name = gitUsername;
-          user.email = gitEmail;
-
-          push.default = "simple";
-          core.askPass = ""; # empty so git asks in the terminal
-
-          # credential.helper = "cache --timeout=21600"; # alternative, 6 hrs
-          credential.helper = "store";
-          init.defaultBranch = "master";
-          log.decorate = "full"; # branch/tag info in git log
-          log.date = "iso";
-          merge.conflictStyle = "diff3"; # readable three-way conflicts
-        };
-      };
-    };
+    imports = [
+      # same identity as seiren
+      ../seiren/user/git.nix
+    ];
   };
 }

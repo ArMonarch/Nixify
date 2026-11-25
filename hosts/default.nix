@@ -125,25 +125,28 @@ in {
       };
     };
 
+    # VMware Fusion guest on the Mac. Minimal for now; grow it toward seiren.
     maclaurin = mkNixosSystem {
       hostname = "maclaurin";
       username = "frenzfries";
       system = "aarch64-linux";
       modules = mkModulesFor "maclaurin" {
         aspects = [
-          "boot-loader/grub"
-          "boot-loader/grub/efi"
-          "desktopManager/plasma"
-          "displayManager/sddm"
-          "localization"
-          "programs/btop"
+          "boot-loader/systemd-boot"
+          "displayManager/greetd/tuigreet-niri"
+          "gpu/vmware"
+          "input/mac-shortcuts"
           "programs/essentials"
           "programs/fish"
           "programs/ghostty"
+          "system/network"
+          "wayland/niri"
+          "wayland/swaybg"
+
+          # keep `make vm/deploy` working: flakes, unfree (claude-code), ssh
           "nix/settings"
           "nixpkgs"
-          "security"
-          "system/network"
+          "services/openssh"
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
