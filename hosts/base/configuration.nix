@@ -12,7 +12,6 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.devices = ["nodev"];
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 10;
 
   networking = {
     networkmanager.enable = lib.mkDefault true;

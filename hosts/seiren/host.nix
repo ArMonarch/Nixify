@@ -14,8 +14,6 @@
   # Ladybird's font fallback lists name these families.
   fonts.packages = [pkgs.dejavu_fonts pkgs.liberation_ttf];
 
-  boot.loader.timeout = 10;
-
   hardware.nvidia = {
     prime.intelBusId = "PCI:0:2:0";
     prime.nvidiaBusId = "PCI:1:0:0";
