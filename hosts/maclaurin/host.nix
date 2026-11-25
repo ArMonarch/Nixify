@@ -3,6 +3,7 @@
   # style), switched from macOS with the Makefile at the repo root; see
   # `make help`.
   imports = [
+    ./clipboard.nix # Mac <-> VM copy and paste
     ./fs.nix
     ./hardware.nix
     ./user.nix # includes the hjem home setup
@@ -13,20 +14,6 @@
   virtualisation.vmware.guest = {
     enable = true;
     headless = false;
-  };
-
-  # The agent only autostarts in X sessions. Under niri it runs against
-  # xwayland-satellite's DISPLAY, which bridges the X clipboard to Wayland.
-  systemd.user.services.vmware-user = {
-    description = "VMware user agent (host clipboard, drag and drop)";
-    wantedBy = ["graphical-session.target"];
-    partOf = ["graphical-session.target"];
-    after = ["graphical-session.target"];
-    serviceConfig = {
-      ExecStart = "/run/wrappers/bin/vmware-user-suid-wrapper";
-      Restart = "on-failure";
-      RestartSec = 2;
-    };
   };
 
   # The VM sits behind Fusion's NAT, reachable only from the Mac.

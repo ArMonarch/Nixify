@@ -161,6 +161,30 @@ guest that the repo `Makefile` drives over ssh.
    make vm/deploy NIXADDR=<ip>   # rsync this repo to /nixify in the VM and switch
    ```
 
+## Dark / light mode
+
+Apps under niri (Firefox, Chromium/Electron, GTK4, and Qt through
+`QT_QPA_PLATFORMTHEME=xdgdesktopportal`) follow GNOME's `color-scheme`, read through the GTK
+portal. `gsettings` isn't installed, so set it with `dconf`; it takes effect live.
+
+```bash
+# dark
+dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"   # older GTK3 apps
+
+# light
+dconf write /org/gnome/desktop/interface/color-scheme "'prefer-light'"
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+
+# current value
+dconf read /org/gnome/desktop/interface/color-scheme
+```
+
+The equivalent with `gsettings` (`nix shell nixpkgs#glib`, needs `gsettings-desktop-schemas`):
+`gsettings set org.gnome.desktop.interface color-scheme prefer-dark`.
+
+ghostty, btop and niri use the host's Nixify `colorScheme` instead.
+
 ## Dependencies
 
 - [flake-parts](https://github.com/hercules-ci/flake-parts) - Modular flake framework

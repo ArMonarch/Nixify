@@ -84,8 +84,7 @@ in {
       system = "x86_64-linux";
       modules = mkModulesFor "seiren" {
         aspects = [
-          "boot-loader/grub"
-          "boot-loader/grub/efi"
+          "boot-loader/systemd-boot"
           "cpu/intel"
           "colorScheme/rose-pine"
           "console/theme"
@@ -94,14 +93,12 @@ in {
           "input/mac-shortcuts"
           "kernel/zen"
           "localization"
-          "nix/settings"
-          "nixpkgs"
-          "programs/aseprite"
           "programs/chrome"
           "programs/essentials"
-          "programs/firefox"
           "programs/fish"
+          "programs/firefox"
           "programs/ghostty"
+          "programs/ladybird"
           "programs/vicinae"
           "programs/nix-ld"
           "programs/nixfetch"
@@ -118,6 +115,9 @@ in {
           "system/network"
           "wayland/niri"
           "wayland/swaybg"
+
+          "nix/settings"
+          "nixpkgs"
         ];
         extraModules = [
           inputs.hjem.nixosModules.default
