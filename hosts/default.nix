@@ -132,6 +132,8 @@ in {
       modules = mkModulesFor "maclaurin" {
         aspects = [
           "boot-loader/systemd-boot"
+          "colorScheme/rose-pine"
+          "console/theme"
           "displayManager/greetd/tuigreet-niri"
           "gpu/vmware"
           "input/mac-shortcuts"
@@ -139,6 +141,8 @@ in {
           "programs/fish"
           "programs/ghostty"
           "programs/vicinae"
+          "programs/nixfetch"
+          "security"
           "system/network"
           "wayland/niri"
           "wayland/swaybg"

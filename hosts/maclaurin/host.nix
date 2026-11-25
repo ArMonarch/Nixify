@@ -8,8 +8,26 @@
     ./user.nix # includes the hjem home setup
   ];
 
-  # open-vm-tools: clipboard, display auto-resize, time sync, vmhgfs-fuse.
-  virtualisation.vmware.guest.enable = true;
+  # open-vm-tools: time sync, clean shutdown, guest info. Not headless (the
+  # default without X11), so the clipboard agent and its vmblock mount exist.
+  virtualisation.vmware.guest = {
+    enable = true;
+    headless = false;
+  };
+
+  # The agent only autostarts in X sessions. Under niri it runs against
+  # xwayland-satellite's DISPLAY, which bridges the X clipboard to Wayland.
+  systemd.user.services.vmware-user = {
+    description = "VMware user agent (host clipboard, drag and drop)";
+    wantedBy = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    serviceConfig = {
+      ExecStart = "/run/wrappers/bin/vmware-user-suid-wrapper";
+      Restart = "on-failure";
+      RestartSec = 2;
+    };
+  };
 
   # The VM sits behind Fusion's NAT, reachable only from the Mac.
   networking.firewall.enable = false;
