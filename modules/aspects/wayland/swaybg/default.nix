@@ -13,7 +13,7 @@
     };
 
     serviceConfig = {
-      ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i '%h/Pictures/Wallpapers/default.jpg'";
+      ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${./wallpapers/forest.jpg}";
       Restart = "on-failure";
     };
 
