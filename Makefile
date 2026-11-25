@@ -35,6 +35,7 @@ vm/check-addr:
 vm/copy: vm/check-addr
 	rsync -av -e '$(SSH)' --delete \
 		--exclude='.git/' \
+		--exclude='.gitignore' \
 		--exclude='result' \
 		--rsync-path="sudo rsync" \
 		$(MAKEFILE_DIR)/ $(NIXUSER)@$(NIXADDR):/nixify

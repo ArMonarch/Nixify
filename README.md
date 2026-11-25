@@ -34,6 +34,7 @@ Aspects are self-contained, composable configuration modules. Each aspect config
 | desktopManager | `gnome`, `plasma` |
 | displayManager | `gdm`, `sddm`, `greetd/tuigreet-niri` |
 | gpu | `intel`, `intel-nvidia`, `nvidia`, `vmware` |
+| input | `mac-shortcuts` |
 | kernel | `latest`, `zen` |
 | localization | default |
 | nix | `settings` |
