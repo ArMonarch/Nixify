@@ -14,12 +14,10 @@
 
   environment.systemPackages = with pkgs; [
     brightnessctl
-    fuzzel
     playerctl
     wl-clipboard
     xkeyboard-config
     xwayland-satellite
-    nautilus
   ];
 
   environment.sessionVariables = {
@@ -34,14 +32,17 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ]);
-    # gnome fronts every interface, gtk only fills the ones gnome lacks
-    # (Access, Notification). Forced because 26.05's upstream niri module
-    # defines its own defaults, including FileChooser = gtk.
+    # gtk handles everything except screen capture, which needs gnome (niri
+    # implements Mutter's ScreenCast API). Forced because 26.05's upstream
+    # niri module defines its own defaults.
     config = {
-      common.default = ["gnome" "gtk"];
+      common.default = ["gtk"];
       niri = {
-        default = lib.mkForce ["gnome" "gtk"];
-        "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["gnome"];
+        default = lib.mkForce ["gtk"];
+        "org.freedesktop.impl.portal.FileChooser" = lib.mkForce ["gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = lib.mkForce ["gnome"];
+        "org.freedesktop.impl.portal.Screenshot" = lib.mkForce ["gnome"];
+        "org.freedesktop.impl.portal.RemoteDesktop" = lib.mkForce ["gnome"];
       };
     };
   };

@@ -24,9 +24,6 @@ input {
   trackpoint {
     off
   }
-
-  // Uncomment this to make the mouse warp to the center of newly focused windows.
-  // warp-mouse-to-focus
 }
 
 // Find more information on the wiki:
@@ -81,14 +78,6 @@ output "HDMI-A-2" {
   }
 }
 
-// Monitor config for NDS venture
-// output "HDMI-A-2" {
-//   mode "1920x1080@100.000"
-//   scale 1
-//   transform "normal"
-//   position x=1980 y=0
-// }
-
 cursor {
   // light mode cursor
   // xcursor-theme "BreezeX-RosePineDawn-Linux"
@@ -108,13 +97,6 @@ layout {
   preset-column-widths {
     proportion 0.5
     proportion 0.9
-  }
-
-  // "switch-preset-window-height" (Mod+Shift+R) toggles between.
-  preset-window-heights {
-    proportion 0.33333
-    proportion 0.5
-    proportion 0.66667
   }
 
   // default width of the new windows.
@@ -137,13 +119,6 @@ layout {
     active-gradient from="#80c8ff" to="#c7ff7f" angle=45
     inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
   }
-
-  struts {
-    // left 64
-    // right 64
-    // top 64
-    // bottom 64
-  }
 }
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
@@ -153,7 +128,6 @@ layout {
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 hotkey-overlay {
-  // disable the "Important Hotkeys" pop-up at startup.
   skip-at-startup
 }
 
@@ -164,9 +138,8 @@ hotkey-overlay {
 // After enabling or disabling this, you need to restart the apps for this to take effect.
 prefer-no-csd
 
-// You can change the path where screenshots are saved.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+// Where screenshots are saved; strftime(3) fills in the date and time.
+screenshot-path "~/Pictures/Screenshots/Screenshot-%Y-%m-%d_%H-%M-%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -258,25 +231,6 @@ window-rule {
   default-window-height { fixed 640; }
 }
 
-// Example: block out two password managers from screen capture.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-
-    // Use this instead if you want them visible on third-party screenshot tools.
-    // block-out-from "screencast"
-}
-
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
 // disable draw border with background
 window-rule {
   draw-border-with-background false
@@ -293,11 +247,8 @@ binds {
   // Most actions that you can bind here can also be invoked programmatically with
   // `niri msg action do-something`.
 
-  Mod+Shift+Slash { show-hotkey-overlay; }
-
-  // Suggested binds for running programs: terminal, app launcher, screen locker.
-  Mod+T     repeat=false hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-  Alt+Space repeat=false hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+  // App launcher.
+  Alt+Space repeat=false { spawn "vicinae" "toggle"; }
 
   // Example volume keys mappings for PipeWire & WirePlumber.
   // The allow-when-locked=true property makes them work even when the session is locked.
@@ -325,81 +276,35 @@ binds {
   Mod+O repeat=false { toggle-overview; }
   Mod+Q repeat=false { close-window; }
 
-  // focus movement
-  Mod+Left  { focus-column-left; }
-  Mod+Down  { focus-window-down; }
-  Mod+Up    { focus-window-up; }
-  Mod+Right { focus-column-right; }
+  // Focus Movement
   Mod+H     { focus-column-left; }
   Mod+J     { focus-window-or-workspace-down; }
   Mod+K     { focus-window-or-workspace-up; }
   Mod+L     { focus-column-right; }
 
-  // window movement
-  Mod+Ctrl+Left  { move-column-left; }
-  Mod+Ctrl+Down  { move-window-down; }
-  Mod+Ctrl+Up    { move-window-up; }
-  Mod+Ctrl+Right { move-column-right; }
-  Mod+Ctrl+H     { move-column-left; }
-  Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-  Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-  Mod+Ctrl+L     { move-column-right; }
-
-  // Alternative commands that move across workspaces when reaching
-  // the first or last window in a column.
-  // Mod+J     { focus-window-or-workspace-down; }
-  // Mod+K     { focus-window-or-workspace-up; }
-  // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-  // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
-
+  // Window Movement
+  Mod+Shift+H     { move-column-left; }
+  Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+  Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+  Mod+Shift+L     { move-column-right; }
+  
   Mod+Home { focus-column-first; }
   Mod+End  { focus-column-last; }
-  Mod+Ctrl+Home { move-column-to-first; }
-  Mod+Ctrl+End  { move-column-to-last; }
+  Mod+Shift+Home { move-column-to-first; }
+  Mod+Shift+End  { move-column-to-last; }
+  
+  // Monitor Focus
+  Mod+Ctrl+H     { focus-monitor-left; }
+  Mod+Ctrl+J     { focus-monitor-down; }
+  Mod+Ctrl+K     { focus-monitor-up; }
+  Mod+Ctrl+L     { focus-monitor-right; }
 
-  Mod+Shift+Left  { focus-monitor-left; }
-  Mod+Shift+Down  { focus-monitor-down; }
-  Mod+Shift+Up    { focus-monitor-up; }
-  Mod+Shift+Right { focus-monitor-right; }
-  Mod+Shift+H     { focus-monitor-left; }
-  Mod+Shift+J     { focus-monitor-down; }
-  Mod+Shift+K     { focus-monitor-up; }
-  Mod+Shift+L     { focus-monitor-right; }
-
-  Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-  Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-  Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-  Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-  Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-  Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-  Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-  Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-  // Alternatively, there are commands to move just a single window:
-  // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-  // ...
-
-  // And you can also move a whole workspace to another monitor:
-  // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-  // ...
-
-  Mod+Page_Down      { focus-workspace-down; }
-  Mod+Page_Up        { focus-workspace-up; }
-  Mod+U              { focus-workspace-down; }
-  Mod+I              { focus-workspace-up; }
-  Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-  Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-  Mod+Ctrl+U         { move-column-to-workspace-down; }
-  Mod+Ctrl+I         { move-column-to-workspace-up; }
-
-  // Alternatively, there are commands to move just a single window:
-  // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
-  // ...
-
-  Mod+Shift+Page_Down { move-workspace-down; }
-  Mod+Shift+Page_Up   { move-workspace-up; }
-  Mod+Shift+U         { move-workspace-down; }
-  Mod+Shift+I         { move-workspace-up; }
+  Mod+U              { focus-workspace-up; }
+  Mod+I              { focus-workspace-down; }
+  Mod+Shift+U        { move-workspace-up; }
+  Mod+Shift+I        { move-workspace-down; }
+  Mod+Page_Up        { move-workspace-up; }
+  Mod+Page_Down      { move-workspace-down; }
 
   // You can bind mouse wheel scroll ticks using the following syntax.
   // These binds will change direction based on the natural-scroll setting.
@@ -407,22 +312,19 @@ binds {
   // To avoid scrolling through workspaces really fast, you can use
   // the cooldown-ms property. The bind will be rate-limited to this value.
   // You can set a cooldown on any bind, but it's most useful for the wheel.
-  Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-  Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-  Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-  Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-  Mod+WheelScrollRight      { focus-column-right; }
-  Mod+WheelScrollLeft       { focus-column-left; }
-  Mod+Ctrl+WheelScrollRight { move-column-right; }
-  Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+  // Same scheme as the keys: Mod focuses, Mod+Shift moves.
+  // Vertical, like Mod+J/K and Mod+Shift+J/K.
+  Mod+WheelScrollDown       cooldown-ms=150 { focus-window-or-workspace-down; }
+  Mod+WheelScrollUp         cooldown-ms=150 { focus-window-or-workspace-up; }
+  Mod+Shift+WheelScrollDown cooldown-ms=150 { move-window-down-or-to-workspace-down; }
+  Mod+Shift+WheelScrollUp   cooldown-ms=150 { move-window-up-or-to-workspace-up; }
 
-  // Usually scrolling up and down with Shift in applications results in
-  // horizontal scrolling; these binds replicate that.
-  Mod+Shift+WheelScrollDown      { focus-column-right; }
-  Mod+Shift+WheelScrollUp        { focus-column-left; }
-  Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-  Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+  // Horizontal, like Mod+H/L and Mod+Shift+H/L.
+  Mod+WheelScrollRight       { focus-column-right; }
+  Mod+WheelScrollLeft        { focus-column-left; }
+  Mod+Shift+WheelScrollRight { move-column-right; }
+  Mod+Shift+WheelScrollLeft  { move-column-left; }
 
   // Similarly, you can bind touchpad scroll "ticks".
   // Touchpad scrolling is continuous, so for these binds it is split into
@@ -450,18 +352,6 @@ binds {
   Mod+7 { focus-workspace 7; }
   Mod+8 { focus-workspace 8; }
   Mod+9 { focus-workspace 9; }
-  Mod+Ctrl+1 { move-column-to-workspace 1; }
-  Mod+Ctrl+2 { move-column-to-workspace 2; }
-  Mod+Ctrl+3 { move-column-to-workspace 3; }
-  Mod+Ctrl+4 { move-column-to-workspace 4; }
-  Mod+Ctrl+5 { move-column-to-workspace 5; }
-  Mod+Ctrl+6 { move-column-to-workspace 6; }
-  Mod+Ctrl+7 { move-column-to-workspace 7; }
-  Mod+Ctrl+8 { move-column-to-workspace 8; }
-  Mod+Ctrl+9 { move-column-to-workspace 9; }
-
-  // Alternatively, there are commands to move just a single window:
-  // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
   // Switches focus between the current and the previous workspace.
   // Mod+Tab { focus-workspace-previous; }
@@ -477,19 +367,11 @@ binds {
   // Expel the bottom window from the focused column to the right.
   Mod+Period { expel-window-from-column; }
 
-  Mod+R { switch-preset-column-width; }
   // Cycling through the presets in reverse order is also possible.
-  // Mod+R { switch-preset-column-width-back; }
-  Mod+Shift+R { switch-preset-window-height; }
-  Mod+Ctrl+R { reset-window-height; }
+  Mod+R { switch-preset-column-width; }
   Mod+F { maximize-column; }
   Mod+Shift+F { fullscreen-window; }
 
-  // Expand the focused column to space not taken up by other fully visible columns.
-  // Makes the column "fill the rest of the space".
-  Mod+Ctrl+F { expand-column-to-available-width; }
-
-  // Mod+C is copy (input/mac-shortcuts), so centering moves to Mod+Shift+C.
   // Mod+C/V/X/A/Z/Y stay unbound here so apps receive them.
   Mod+Shift+C { center-column; }
 
@@ -507,15 +389,8 @@ binds {
   Mod+Minus { set-column-width "-10%"; }
   Mod+Equal { set-column-width "+10%"; }
 
-  // Finer height adjustments when in column with other windows.
-  Mod+Shift+Minus { set-window-height "-10%"; }
-  Mod+Shift+Equal { set-window-height "+10%"; }
-
   // Move the focused window between the floating and the tiling layout.
   Mod+Shift+V { switch-focus-between-floating-and-tiling; }
-
-  // Toggle whether the focused window is floating.
-  F12 { toggle-window-floating; }
 
   // Toggle tabbed column display mode.
   // Windows in this column will appear as vertical tabs,
@@ -530,9 +405,13 @@ binds {
   // Mod+Space       { switch-layout "next"; }
   // Mod+Shift+Space { switch-layout "prev"; }
 
+  // macOS-style screenshots: whole screen, selection, window.
+  Mod+Shift+3 { screenshot-screen; }
+  Mod+Shift+4 { screenshot; }
+  Mod+Shift+5 { screenshot-window; }
+
+  // Print-key selection screenshot, for keyboards that have one.
   Print { screenshot; }
-  Ctrl+Print { screenshot-screen; }
-  Alt+Print { screenshot-window; }
 
   // Applications such as remote-desktop clients and software KVM switches may
   // request that niri stops processing the keyboard shortcuts defined here
