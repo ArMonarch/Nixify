@@ -7,7 +7,10 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = [pkgs.vicinae];
+  environment.systemPackages = [
+    pkgs.vicinae
+    pkgs.pulseaudio
+  ];
 
   # The package ships vicinae.service (`vicinae server`); start it with the session.
   systemd.packages = [pkgs.vicinae];
